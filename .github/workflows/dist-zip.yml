@@ -8,7 +8,8 @@ on:
 
 jobs:
   dist:
-    runs-on: ubuntu-latest
+    # Pin until ubuntu-latest moves to 26.04 (2026-10-19〜). Matches hosted 24.04 images today.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -32,7 +33,7 @@ jobs:
         run: npm run dist
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: s2j-acknowledgements-dist-zip
           path: release/*.zip
