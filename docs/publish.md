@@ -62,9 +62,11 @@ npmjs.com: アカウント → **Staged Packages** から同じ承認ができ�
 承認後の確認:
 
 ```zsh
-npm view @s2j/acknowledgements version
-npm view @s2j/acknowledgements dist-tags
+npm view @s2j/acknowledgements version --prefer-online
+npm view @s2j/acknowledgements dist-tags --prefer-online
 ```
+
+公開直後は registry / npmjs.com の反映に数分かかることがあります。CLI が古い `latest` を返すときは `--prefer-online` を付けてください。
 
 ステージを使わず **直接** 公開する場合は、承認待ちのステージとバージョンが衝突しないよう `npm stage list` で確認してから `npm publish --access public` してください。
 

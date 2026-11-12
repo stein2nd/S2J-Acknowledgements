@@ -2,16 +2,26 @@
 
 ## unreleased
 
+## 0.1.5 - 2026-11-12
+
+### Changed
+
+* docs: npm `latest` **0.1.4** 確定後の status / implementation (P5-04完了)
+* docs: 公開直後の確認に `npm view … --prefer-online` を [publish.md](./docs/publish.md) に追記
+
 ## 0.1.4 - 2026-11-12
 
 ### Added
 
-* CI: tag /手動実行用 `npm-publish` workflow (Secret `NPM_TOKEN`)
+* CI: tag / 手動実行用 `npm-publish` workflow (Secret `NPM_TOKEN`)
 
 ### Changed
 
-* docs: GitHub Release、dist-zip と npm registry は別途 `npm publish` が必要である旨を [publish.md](./docs/publish.md) に明記
-* docs: registry `latest` と Git tag の差分を status / implementation に反映
+* docs: GitHub Release、dist-zip と npm registry は別途 publish が必要である旨を [publish.md](./docs/publish.md) に明記
+
+### Release
+
+* npm: `@s2j/acknowledgements@0.1.4` を registry の `latest` に反映 (Actions `npm-publish`)
 
 ## 0.1.3 - 2026-11-12
 
