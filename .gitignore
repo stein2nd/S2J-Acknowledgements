@@ -34,8 +34,8 @@ docs-linter.code-workspace
 .env.local
 
 # Build / cache
-dist/
-release/
+/dist/
+/release/
 build/oss-notice/
 
 # npm pack artifacts (see npm run pack:artifact)
