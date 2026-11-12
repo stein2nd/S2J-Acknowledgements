@@ -2,6 +2,12 @@
 
 ## unreleased
 
+## 0.1.7 - 2026-11-12
+
+### Fixed
+
+* CI dist-zip: `format:check` 未通過だった `pipeline` / `generate` / `spdx-anonymize` (+ test) を Prettier 整形
+
 ## 0.1.6 - 2026-11-12
 
 ### Added

@@ -126,7 +126,9 @@ export function runPipeline(options: PipelineOptions): number {
       `verbose: SPDX prepared (${plan.sbomPath}, dropped ${spdxPrep.droppedPathPackages} path-like packages)`,
     );
   } else if (spdxPrep.droppedPathPackages > 0) {
-    console.error(`info: dropped ${spdxPrep.droppedPathPackages} path-like SPDX package(s) before onot`);
+    console.error(
+      `info: dropped ${spdxPrep.droppedPathPackages} path-like SPDX package(s) before onot`,
+    );
   }
 
   const useFeluda = plan.feluda && !options.skipFeluda;

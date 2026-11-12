@@ -44,10 +44,7 @@ export function anonymizeString(value: string, replacements: PathReplacement[]):
   return out;
 }
 
-export function anonymizeSpdxValue(
-  value: unknown,
-  replacements: PathReplacement[],
-): unknown {
+export function anonymizeSpdxValue(value: unknown, replacements: PathReplacement[]): unknown {
   if (typeof value === "string") {
     return anonymizeString(value, replacements);
   }

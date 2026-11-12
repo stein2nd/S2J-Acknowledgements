@@ -11,8 +11,7 @@ import { resolvePackageRoot } from "../lib/package-root.js";
 export function runGenerate(argv: string[]): number {
   const { flags } = parseArgs(argv);
   const hostRoot = resolveHostRoot(flagString(flags, "cwd"));
-  const configRel =
-    flagString(flags, "config") ?? process.env.ACK_CONFIG ?? "ack.config.json";
+  const configRel = flagString(flags, "config") ?? process.env.ACK_CONFIG ?? "ack.config.json";
   const configPath = resolve(hostRoot, configRel);
 
   if (!existsSync(configPath)) {

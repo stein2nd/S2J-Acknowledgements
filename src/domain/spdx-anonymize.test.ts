@@ -19,9 +19,7 @@ describe("spdx-anonymize", () => {
     });
 
     const pkgName = `/Users/alice/proj/build/Foo.app/Contents/MacOS/Foo`;
-    expect(anonymizeString(pkgName, replacements)).toBe(
-      `{SCAN:app}/Contents/MacOS/Foo`,
-    );
+    expect(anonymizeString(pkgName, replacements)).toBe(`{SCAN:app}/Contents/MacOS/Foo`);
     expect(anonymizeString("/Users/alice/proj/README.md", replacements)).toBe(
       "{HOST_ROOT}/README.md",
     );
