@@ -128,7 +128,7 @@
 * [x] P5-01 — [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` ドラフト
 * [x] P5-02 — `package.json.scripts.example` (`ack:*`)
 * [x] P5-03 — [examples/wordpress-plugin](../examples/wordpress-plugin/) README 付き例
-* [x] P5-04 — npm 公開（**0.1.1**、[publish.md](./publish.md)）
+* [x] P5-04 — npm 公開（**0.1.2**、[publish.md](./publish.md)）
 
 ### ドキュメント・リリース {#status-docs-release}
 
@@ -168,9 +168,9 @@
 2. **Schema 検証・Feluda・workDir・test-doctor・onot 出力ディレクトリ** — 済
 3. **ホスト例・README・publish 手順** — おおむね済
 4. **手動 E2E (dir) 記録** — 済 ([test-results.md](./test-results.md))
-5. **npm 公開** — 済（**0.1.1** 以降はタグ連動）
+5. **npm 公開** — 済（**0.1.2** 以降はタグ連動）
 6. **Cozy Brew smoke** — 残
 
 ## 次のアクション (推奨)
 
-1. Cozy Brew に `@s2j/acknowledgements@0.1.1` を導入し `generate` → [test-results.md](./test-results.md) に追記
+1. Cozy Brew に `@s2j/acknowledgements@0.1.2` を導入し `generate` → [test-results.md](./test-results.md) に追記

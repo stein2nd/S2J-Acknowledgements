@@ -6,7 +6,7 @@ import { createWriteStream } from "node:fs";
 import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import archiver from "archiver";
+import { ZipArchive } from "archiver";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "../..");
@@ -21,7 +21,7 @@ const includePaths = (
   pkg.files ?? ["dist/", "presets/", "schema/", "config/", "package.json", "README.md", "LICENSE"]
 ).map((entry) => entry.replace(/\/$/, ""));
 
-const archive = archiver("zip", { zlib: { level: 9 } });
+const archive = new ZipArchive({ zlib: { level: 9 } });
 const output = createWriteStream(outFile);
 
 const done = new Promise((resolve, reject) => {

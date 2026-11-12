@@ -1,6 +1,6 @@
 {
   "name": "@s2j/acknowledgements",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generate Acknowledgements for third-party software, libraries, and tools used in your projects.",
   "type": "module",
   "license": "GPL-3.0-or-later",

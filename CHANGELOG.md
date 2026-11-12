@@ -2,6 +2,12 @@
 
 ## unreleased
 
+## 0.1.2 - 2026-11-12
+
+### Fixed
+
+* `dist:zip`: archiver v8 の named export (`ZipArchive`) に合わせる（CI Build & zip）
+
 ## 0.1.1 - 2026-11-12
 
 ### Fixed
