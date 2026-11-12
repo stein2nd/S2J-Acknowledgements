@@ -2,6 +2,13 @@
 
 ## unreleased
 
+## 0.1.8 - 2026-11-12
+
+### Fixed
+
+* CI dist-zip: `test-doctor.sh` ACK-002を `generate` デフォルト設定 (`ack.config.json`) に合わせて更新
+* docs: [cli.md](./docs/cli.md) に `generate` 設定解決と ACK-001〜006表を追記
+
 ## 0.1.7 - 2026-11-12
 
 ### Fixed

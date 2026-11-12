@@ -33,7 +33,8 @@ pass_test "ACK-001"
 log_test "ACK-002"
 run_cli generate
 assert_exit_code "${STATUS}" 2
-assert_contains "${OUTPUT}" "--config"
+assert_contains "${OUTPUT}" "config not found"
+assert_contains "${OUTPUT}" "ack.config.json"
 pass_test "ACK-002"
 
 log_test "ACK-003"

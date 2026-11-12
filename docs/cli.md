@@ -144,16 +144,23 @@ CI や手元で **何度でも安全に再実行**できることを v1の前提
 
 ## `generate`
 
-### 必須引数
+### 設定パスの解決
 
-| 引数 | 説明 |
+`doctor` と同様、`--config` を省略したときは次の順で設定ファイルを決めます。
+
+| 優先 | ソース |
 | --- | --- |
-| `--config <path>` | `ack.config.json` (ホストプロジェクトのルート相対または絶対) |
+| 1 | `--config <path>` |
+| 2 | 環境変数 `ACK_CONFIG` |
+| 3 | デフォルト `{ホストルート}/ack.config.json` |
+
+ファイルが存在しない場合は exit `2` とし、stderr に `error: config not found: <絶対パス>` を出します。
 
 ### 任意引数 (CLI が設定をオーバーライト)
 
 | 引数 | 説明 |
 | --- | --- |
+| `--config <path>` | 設定ファイル (省略時は上表のデフォルト) |
 | `--out <path>` | 最終成果物パス (`output` より優先) |
 | `--preset <name>` | 設定の `preset` をオーバーライト |
 | `--app <path>` | macOS `.app` 明示 (CI 向け) |
@@ -184,6 +191,19 @@ CI や手元で **何度でも安全に再実行**できることを v1の前提
 | `1` | 外部ツール失敗、または `doctor` で必須欠落 |
 | `2` | ユーザー入力・設定・ターゲット解決エラー |
 | `127` | 実行ファイル未検出 (内部判定) |
+
+### スモークテスト (ACK-001〜006)
+
+CI の `npm run test:doctor` (`scripts/test-doctor.sh`) が再現する最小契約です。
+
+| ID | コマンド | exit | 出力に含む |
+| --- | --- | --- | --- |
+| ACK-001 | `help` | `0` | `init` |
+| ACK-002 | `generate` (ホストルートに `ack.config.json` なし) | `2` | `config not found`、 `ack.config.json` |
+| ACK-003 | `init` (`--preset` なし) | `2` | `--preset` |
+| ACK-004 | `not-a-command` | `2` | (任意) |
+| ACK-005 | `generate` + 不正設定 (`--cwd` サンドボックス) | `2` | `validation failed` |
+| ACK-006 | `generate --dry-run` (有効な `ack.config.json`) | `0` | `dry-run` |
 
 ## ログ
 
