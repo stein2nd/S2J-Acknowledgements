@@ -29,7 +29,7 @@
 | 設定・`init` (フェーズ2) | 実装済み | 100 | [§設定・init](#status-config-init) (6/6) |
 | macOS ターゲット解決 (フェーズ3) | 実装済み | 100 | [§Xcode 解決](#status-xcode) (5/5) |
 | 生成パイプライン (フェーズ4) | 実装済み | 100 | [§パイプライン](#status-pipeline) (8/8) |
-| ホスト統合 (フェーズ5) | 実装済み | 100 | [§ホスト統合](#status-host) (4/4) |
+| ホスト統合 (フェーズ5) | 一部 | 75 | [§ホスト統合](#status-host) (3/4) |
 | ドキュメント・リリース (フェーズ6) | 実装済み | 100 | [§ドキュメント](#status-docs-release) (3/3) |
 | 品質・CI | 実装済み | 100 | [§品質・CI](#status-quality) (6/6) |
 
@@ -128,7 +128,7 @@
 * [x] P5-01 — [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` ドラフト
 * [x] P5-02 — `package.json.scripts.example` (`ack:*`)
 * [x] P5-03 — [examples/wordpress-plugin](../examples/wordpress-plugin/) README 付き例
-* [x] P5-04 — npm 公開 (**0.1.3**、[publish.md](./publish.md))
+* [ ] P5-04 — npm **registry の `latest` がタグと一致**（現状 **0.1.0**、Git **v0.1.4** → [publish.md](./publish.md)）
 
 ### ドキュメント・リリース {#status-docs-release}
 
@@ -168,9 +168,9 @@
 2. **Schema 検証・Feluda・workDir・test-doctor・onot 出力ディレクトリ** — 済
 3. **ホスト例・README・publish 手順** — おおむね済
 4. **手動 E2E (dir) 記録** — 済 ([test-results.md](./test-results.md))
-5. **npm 公開** — 済 (**0.1.3** 以降はタグ連動)
+5. **npm `latest` を v0.1.4 に追い付け** — 残（`npm publish` / CI `NPM_TOKEN`）
 6. **Cozy Brew smoke** — 残
 
 ## 次のアクション (推奨)
 
-1. Cozy Brew に `@s2j/acknowledgements@0.1.3` を導入し `generate` → [test-results.md](./test-results.md) に追記
+1. Cozy Brew に `@s2j/acknowledgements@0.1.4` を導入し `generate` → [test-results.md](./test-results.md) に追記

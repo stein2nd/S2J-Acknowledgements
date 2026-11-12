@@ -2,6 +2,17 @@
 
 ## unreleased
 
+## 0.1.4 - 2026-11-12
+
+### Added
+
+* CI: tag /手動実行用 `npm-publish` workflow (Secret `NPM_TOKEN`)
+
+### Changed
+
+* docs: GitHub Release、dist-zip と npm registry は別途 `npm publish` が必要である旨を [publish.md](./docs/publish.md) に明記
+* docs: registry `latest` と Git tag の差分を status / implementation に反映
+
 ## 0.1.3 - 2026-11-12
 
 ### Fixed
