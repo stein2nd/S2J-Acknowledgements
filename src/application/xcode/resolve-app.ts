@@ -79,8 +79,7 @@ export function resolveMacAppPath(
     if (!scheme) attempts.push("xcode.scheme: required for xcodebuild");
   }
 
-  const projectFile =
-    cfg.project ?? (projectPath ? basename(projectPath) : undefined);
+  const projectFile = cfg.project ?? (projectPath ? basename(projectPath) : undefined);
   const token = derivedDataProjectToken(hostRoot, projectFile);
   attempts.push(`DerivedData glob (token=${token || "?"}, ${configuration})`);
   const glob = findAppsInDerivedData({

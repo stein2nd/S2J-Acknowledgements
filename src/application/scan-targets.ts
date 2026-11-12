@@ -11,8 +11,7 @@ export type ScanTarget = {
 };
 
 export type ResolveScanResult =
-  | { ok: true; targets: ScanTarget[] }
-  | { ok: false; message: string };
+  { ok: true; targets: ScanTarget[] } | { ok: false; message: string };
 
 export type ResolveScanOptions = {
   verbose?: boolean;

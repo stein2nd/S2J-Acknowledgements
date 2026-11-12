@@ -20,8 +20,7 @@ export function runFeludaPass(
   }
 
   const args =
-    options.feludaArgs?.map((a) => a.replaceAll("{sbom}", sbomPath)) ??
-    defaultFeludaArgs(sbomPath);
+    options.feludaArgs?.map((a) => a.replaceAll("{sbom}", sbomPath)) ?? defaultFeludaArgs(sbomPath);
 
   if (options.verbose) {
     console.error(`feluda ${args.join(" ")}`);

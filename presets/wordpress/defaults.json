@@ -2,12 +2,7 @@
   "preset": "wordpress",
   "scanPaths": [".", "vendor"],
   "scan": {
-    "exclude": [
-      "vendor/**",
-      "node_modules/**",
-      "node_modules/.cache/**",
-      ".git/**"
-    ]
+    "exclude": ["vendor/**", "node_modules/**", "node_modules/.cache/**", ".git/**"]
   },
   "output": "ACKNOWLEDGEMENTS.md",
   "workDir": "build/oss-notice",

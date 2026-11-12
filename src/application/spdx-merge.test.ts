@@ -16,14 +16,20 @@ describe("spdx-merge", () => {
       a,
       JSON.stringify({
         spdxVersion: "SPDX-2.3",
-        packages: [{ name: "foo", versionInfo: "1.0.0" }, { name: "bar", versionInfo: "2.0.0" }],
+        packages: [
+          { name: "foo", versionInfo: "1.0.0" },
+          { name: "bar", versionInfo: "2.0.0" },
+        ],
       }),
     );
     writeFileSync(
       b,
       JSON.stringify({
         spdxVersion: "SPDX-2.3",
-        packages: [{ name: "foo", versionInfo: "1.0.0" }, { name: "baz", versionInfo: "3.0.0" }],
+        packages: [
+          { name: "foo", versionInfo: "1.0.0" },
+          { name: "baz", versionInfo: "3.0.0" },
+        ],
       }),
     );
 

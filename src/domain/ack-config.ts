@@ -55,8 +55,7 @@ export function loadMergedAckConfig(
 ): AckConfig {
   const hostRaw = JSON.parse(readFileSync(configPath, "utf8")) as Record<string, unknown>;
   const presetName =
-    overrides.preset ??
-    (typeof hostRaw.preset === "string" ? hostRaw.preset : undefined);
+    overrides.preset ?? (typeof hostRaw.preset === "string" ? hostRaw.preset : undefined);
 
   if (!presetName || !isPresetName(presetName)) {
     throw new Error(`invalid or missing preset in ${configPath}`);

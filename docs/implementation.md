@@ -79,7 +79,7 @@ v1向けの実装 initiative タスクです。状態は [status.md](./status.md
 | P5-01 | [S2J Cozy Brew](https://github.com/stein2nd/s2j-cozy-brew) 用 `ack.config.json` 例 | **完了** (`examples/cozy-brew/`) |
 | P5-02 | Cozy Brew `package.json` に `ack:*` scripts | **完了** (`package.json.scripts.example`) |
 | P5-03 | WordPress プリセット README 例 | **完了** (`examples/wordpress-plugin/`) |
-| P5-04 | npm 公開手順 (private → public) | **完了** (`@s2j/acknowledgements@0.1.0`) |
+| P5-04 | npm 公開手順 (private → public) | **完了** (`@s2j/acknowledgements@0.1.1`) |
 
 ## フェーズ6: ドキュメント移行
 

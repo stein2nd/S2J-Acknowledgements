@@ -1,10 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import {
-  gitignoreCoversVenv,
-  gitignoreCoversWorkDir,
-  parseGitignoreLines,
-} from "./gitignore.js";
+import { gitignoreCoversVenv, gitignoreCoversWorkDir, parseGitignoreLines } from "./gitignore.js";
 
 describe("gitignore", () => {
   it("detects venv patterns", () => {

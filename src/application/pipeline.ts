@@ -3,10 +3,7 @@ import { dirname, join, resolve } from "node:path";
 
 import { copyArtifactFile } from "../adapters/copy-artifact.js";
 import type { AckConfig } from "../domain/ack-config.js";
-import {
-  intermediatePathsToRemove,
-  isOutputInsideWorkDir,
-} from "../domain/workdir-cleanup.js";
+import { intermediatePathsToRemove, isOutputInsideWorkDir } from "../domain/workdir-cleanup.js";
 import { runFeludaPass } from "./feluda.js";
 import { findOnotMarkdown } from "./onot-output.js";
 import { runOnotGenerate } from "./onot.js";
@@ -60,9 +57,7 @@ export function planPipeline(
     sbomPath,
     onotOutputDir,
     outputPath,
-    syftCommands: resolved.targets.map(
-      (t) => `syft scan dir:${t.absolutePath} -o spdx-json=…`,
-    ),
+    syftCommands: resolved.targets.map((t) => `syft scan dir:${t.absolutePath} -o spdx-json=…`),
     feluda: config.pipeline?.feluda === true,
     onotCommand: `${existsSync(onotExe) ? onotExe : "onot"} generate -i ${sbomPath} -f md -o ${onotOutputDir} --config ${onotConfig}`,
   };
@@ -164,10 +159,7 @@ export function runPipeline(options: PipelineOptions): number {
       )) {
         try {
           const st = statSync(path);
-          rmSync(
-            path,
-            st.isDirectory() ? { recursive: true, force: true } : { force: true },
-          );
+          rmSync(path, st.isDirectory() ? { recursive: true, force: true } : { force: true });
         } catch {
           console.warn(`warn: could not remove ${path}`);
         }

@@ -5,10 +5,7 @@ import { intermediatePathsToRemove, isOutputInsideWorkDir } from "./workdir-clea
 describe("workdir-cleanup", () => {
   it("detects output inside workDir", () => {
     expect(
-      isOutputInsideWorkDir(
-        "/proj/build/oss-notice/ACKNOWLEDGEMENTS.md",
-        "/proj/build/oss-notice",
-      ),
+      isOutputInsideWorkDir("/proj/build/oss-notice/ACKNOWLEDGEMENTS.md", "/proj/build/oss-notice"),
     ).toBe(true);
     expect(isOutputInsideWorkDir("/proj/ACKNOWLEDGEMENTS.md", "/proj/build/oss-notice")).toBe(
       false,

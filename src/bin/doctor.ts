@@ -112,7 +112,9 @@ export function runDoctor(argv: string[]): number {
   for (const row of rows) {
     console.log(`[${row.status}] ${row.name}${row.detail ? ` — ${row.detail}` : ""}`);
   }
-  console.log(`\nRecommended pins: syft ${recommended.syft ?? "?"}, onot ${recommended.onot ?? "?"}`);
+  console.log(
+    `\nRecommended pins: syft ${recommended.syft ?? "?"}, onot ${recommended.onot ?? "?"}`,
+  );
   console.log("See docs/install.md for setup.");
 
   return hasMissing ? 1 : 0;

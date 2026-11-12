@@ -16,10 +16,7 @@ export type IntermediatePaths = {
 };
 
 /** Paths safe to delete after a successful run (never includes final `outputPath`). */
-export function intermediatePathsToRemove(
-  paths: IntermediatePaths,
-  outputPath: string,
-): string[] {
+export function intermediatePathsToRemove(paths: IntermediatePaths, outputPath: string): string[] {
   const out = resolve(outputPath);
   const unique = new Set<string>();
   for (const p of [...paths.partialSboms, paths.sbomPath, paths.onotOutputDir]) {

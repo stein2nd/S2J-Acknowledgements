@@ -10,10 +10,7 @@ function isPlainObject(value: unknown): value is PlainObject {
  * Preset defaults + host config (docs/domain.md).
  * Arrays in host replace preset arrays entirely.
  */
-export function mergeHostConfig(
-  presetDefaults: PlainObject,
-  host: PlainObject,
-): PlainObject {
+export function mergeHostConfig(presetDefaults: PlainObject, host: PlainObject): PlainObject {
   const out: PlainObject = { ...presetDefaults };
 
   for (const [key, hostValue] of Object.entries(host)) {

@@ -128,13 +128,13 @@
 * [x] P5-01 — [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` ドラフト
 * [x] P5-02 — `package.json.scripts.example` (`ack:*`)
 * [x] P5-03 — [examples/wordpress-plugin](../examples/wordpress-plugin/) README 付き例
-* [x] P5-04 — npm `publish` の実実行 ([publish.md](./publish.md)、**0.1.0**)
+* [x] P5-04 — npm 公開（**0.1.1**、[publish.md](./publish.md)）
 
 ### ドキュメント・リリース {#status-docs-release}
 
 * [x] P6-01 — `docs_mod/` 確定版を `docs/` に移行
 * [x] P6-02 — README クイックスタート ([README.md](../README.md))
-* [x] P6-03 — CHANGELOG 初回リリース版確定 (**v0.1.0** / 2026-11-12)
+* [x] P6-03 — CHANGELOG / git tag **v0.1.x** 確定
 
 ### 品質・CI {#status-quality}
 
@@ -155,7 +155,7 @@
 | G2 | `docs-lint` CI | 姉妹 Docs Linter 同型 (任意) |
 | G3 | Windows ターゲット解決 | v1非目標 |
 | G4 | 実ホスト (Cozy Brew / WP) で `macos-app` / `wordpress` generate | **dir E2E 済** ([test-results.md](./test-results.md))。実アプリ・Feluda は未 |
-| G5 | npm 公開の実コマンド実行 | **済** `@s2j/acknowledgements@0.1.0` |
+| G5 | npm 公開の実コマンド実行 | **済** `@s2j/acknowledgements`（latest 追従は各リリースごと） |
 
 ## 補足
 
@@ -168,9 +168,9 @@
 2. **Schema 検証・Feluda・workDir・test-doctor・onot 出力ディレクトリ** — 済
 3. **ホスト例・README・publish 手順** — おおむね済
 4. **手動 E2E (dir) 記録** — 済 ([test-results.md](./test-results.md))
-5. **npm 公開** — 済（**0.1.0**）
+5. **npm 公開** — 済（**0.1.1** 以降はタグ連動）
 6. **Cozy Brew smoke** — 残
 
 ## 次のアクション (推奨)
 
-1. Cozy Brew に `@s2j/acknowledgements@0.1.0` を導入し Release 後 `generate` → [test-results.md](./test-results.md) に追記
+1. Cozy Brew に `@s2j/acknowledgements@0.1.1` を導入し `generate` → [test-results.md](./test-results.md) に追記

@@ -29,5 +29,5 @@ export function runCommand(
 
 export function which(command: string): string | null {
   const result = runCommand("which", [command]);
-  return result.ok ? result.stdout.split("\n")[0] ?? null : null;
+  return result.ok ? (result.stdout.split("\n")[0] ?? null) : null;
 }
