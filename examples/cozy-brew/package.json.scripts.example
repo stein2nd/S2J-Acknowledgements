@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "ack:init": "s2j-acknowledgements init --preset macos-app",
+    "ack:doctor": "s2j-acknowledgements doctor --config ack.config.json",
+    "ack:generate": "s2j-acknowledgements generate --config ack.config.json",
+    "ack:generate:ci": "s2j-acknowledgements generate --config ack.config.json --app \"${ACK_APP}\""
+  }
+}

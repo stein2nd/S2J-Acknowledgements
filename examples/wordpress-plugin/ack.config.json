@@ -1,0 +1,14 @@
+{
+  "preset": "wordpress",
+  "output": "ACKNOWLEDGEMENTS.md",
+  "workDir": "build/oss-notice",
+  "scanPaths": [".", "vendor"],
+  "tools": {
+    "venvPath": "venv"
+  },
+  "pipeline": {
+    "feluda": true,
+    "onotFormat": "md",
+    "onotConfig": "onot.yaml"
+  }
+}

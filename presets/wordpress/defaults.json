@@ -1,0 +1,22 @@
+{
+  "preset": "wordpress",
+  "scanPaths": [".", "vendor"],
+  "scan": {
+    "exclude": [
+      "vendor/**",
+      "node_modules/**",
+      "node_modules/.cache/**",
+      ".git/**"
+    ]
+  },
+  "output": "ACKNOWLEDGEMENTS.md",
+  "workDir": "build/oss-notice",
+  "tools": {
+    "venvPath": "venv"
+  },
+  "pipeline": {
+    "feluda": true,
+    "onotFormat": "md",
+    "onotConfig": "onot.yaml"
+  }
+}

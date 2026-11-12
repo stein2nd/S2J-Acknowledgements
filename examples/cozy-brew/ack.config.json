@@ -1,0 +1,20 @@
+{
+  "preset": "macos-app",
+  "output": "ACKNOWLEDGEMENTS.md",
+  "workDir": "build/oss-notice",
+  "xcode": {
+    "project": "CozyBrew.xcodeproj",
+    "scheme": "CozyBrew",
+    "configuration": "Release",
+    "productName": "CozyBrew.app",
+    "merge": ["app", "spm-checkouts"]
+  },
+  "tools": {
+    "venvPath": "venv"
+  },
+  "pipeline": {
+    "feluda": false,
+    "onotFormat": "md",
+    "onotConfig": "onot.yaml"
+  }
+}

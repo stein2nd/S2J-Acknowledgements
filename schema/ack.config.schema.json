@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://s2j.dev/schemas/ack.config.schema.json",
+  "title": "S2J Acknowledgements host configuration",
+  "type": "object",
+  "required": ["output"],
+  "additionalProperties": true,
+  "properties": {
+    "preset": {
+      "type": "string",
+      "enum": ["macos-app", "wordpress", "dir"]
+    },
+    "output": { "type": "string", "minLength": 1 },
+    "workDir": { "type": "string", "default": "build/oss-notice" },
+    "scanPaths": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exclude": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "xcode": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project": { "type": "string" },
+        "scheme": { "type": "string" },
+        "configuration": { "type": "string" },
+        "appPath": { "type": "string" },
+        "productName": { "type": "string" },
+        "merge": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["app", "spm-checkouts"] }
+        }
+      }
+    },
+    "pipeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "feluda": { "type": "boolean" },
+        "feludaArgs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "onotFormat": { "type": "string", "const": "md" },
+        "onotConfig": { "type": "string" }
+      }
+    },
+    "syft": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "extraArgs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "tools": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "venvPath": { "type": "string", "default": "venv" },
+        "onotPath": { "type": "string" }
+      }
+    }
+  }
+}

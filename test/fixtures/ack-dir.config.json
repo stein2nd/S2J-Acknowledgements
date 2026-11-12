@@ -1,0 +1,7 @@
+{
+  "preset": "dir",
+  "output": "build/oss-notice/ACKNOWLEDGEMENTS.test.md",
+  "workDir": "build/oss-notice",
+  "scanPaths": ["."],
+  "tools": { "venvPath": "venv" }
+}

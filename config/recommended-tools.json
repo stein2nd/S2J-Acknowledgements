@@ -1,0 +1,7 @@
+{
+  "syft": ">=1.18.0",
+  "onot": "1.2.0",
+  "onotExtras": ["openpyxl"],
+  "feluda": null,
+  "python": ">=3.11"
+}

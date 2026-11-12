@@ -1,0 +1,17 @@
+{
+  "preset": "macos-app",
+  "output": "ACKNOWLEDGEMENTS.md",
+  "workDir": "build/oss-notice",
+  "tools": {
+    "venvPath": "venv"
+  },
+  "pipeline": {
+    "feluda": false,
+    "onotFormat": "md",
+    "onotConfig": "onot.yaml"
+  },
+  "xcode": {
+    "configuration": "Release",
+    "merge": ["app", "spm-checkouts"]
+  }
+}

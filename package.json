@@ -1,0 +1,64 @@
+{
+  "name": "@s2j/acknowledgements",
+  "version": "0.1.0",
+  "description": "Generate Acknowledgements for third-party software, libraries, and tools used in your projects.",
+  "type": "module",
+  "license": "GPL-3.0-or-later",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "s2j-acknowledgements": "dist/bin/cli.js"
+  },
+  "files": [
+    "dist/",
+    "presets/",
+    "schema/",
+    "config/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint:docs": "s2j-docs-linter ./README.md ./CHANGELOG.md ./docs/**/*.md",
+    "lint": "eslint . && npm run typecheck",
+    "lint:fix": "eslint . --fix",
+    "clean": "rm -rf dist",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "vite build --watch",
+    "format": "prettier --write \"**/*.{ts,mjs,cjs,js,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,mjs,cjs,js,json}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:doctor": "bash scripts/test-doctor.sh",
+    "prepare": "npm run build",
+    "dist": "npm run dist:build && npm run dist:zip",
+    "dist:build": "npm run build",
+    "dist:zip": "node scripts/dist/make-dist-zip.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@s2j/docs-linter": "^1.0.32",
+    "@types/node": "^26.6.6",
+    "archiver": "^8.0.0",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.0",
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "@s2j/docs-linter": true
+  },
+  "overrides": {
+    "glob": "^14.0.3",
+    "minimatch": "^11.0.4"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
+  }
+}
