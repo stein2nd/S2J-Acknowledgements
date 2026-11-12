@@ -154,7 +154,7 @@
 | G1 | `mdfind` による `.app` 最終手段 | [xcode-target-resolution.md](./xcode-target-resolution.md) |
 | G2 | `docs-lint` CI | 姉妹 Docs Linter 同型 (任意) |
 | G3 | Windows ターゲット解決 | v1非目標 |
-| G4 | 実ホスト (Cozy Brew / WP) で `macos-app` / `wordpress` generate | **dir E2E 済** ([test-results.md](./test-results.md))。実アプリ・Feluda は未 |
+| G4 | 実ホスト (Cozy Brew / WP) で `macos-app` / `wordpress` generate | **Cozy Brew `generate` 済** (品質調整は任意。[test-results.md](./test-results.md)) |
 | G5 | npm 公開の実コマンド実行 | **済** `@s2j/acknowledgements` (latest 追従は各リリースごと) |
 
 ## 補足
@@ -168,9 +168,9 @@
 2. **Schema 検証・Feluda・workDir・test-doctor・onot 出力ディレクトリ** — 済
 3. **ホスト例・README・publish 手順** — おおむね済
 4. **手動 E2E (dir) 記録** — 済 ([test-results.md](./test-results.md))
-5. **npm 公開** — 済（tag + `npm-publish` workflow / `NPM_TOKEN`）
-6. **Cozy Brew smoke** — 残
+5. **npm 公開** — 済 (tag + `npm-publish` workflow / `NPM_TOKEN`)
+6. **Cozy Brew smoke** — 済 (初回 `generate`)。`onot.yaml` 調整・アプリ同梱はホスト側
 
 ## 次のアクション (推奨)
 
-1. Cozy Brew に `@s2j/acknowledgements@0.1.5` を導入し `generate` → [test-results.md](./test-results.md) に追記
+1. Cozy Brew の `ACKNOWLEDGEMENTS.md` を About / 同梱に載せ、`onot.yaml` で表示名・フィルタを必要に応じ調整

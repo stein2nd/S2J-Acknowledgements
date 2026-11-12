@@ -17,20 +17,20 @@ v1 初回公開のチェックリストです。
 | GitHub Release 作成 | Releases ページ・説明文 | **変わらない** |
 | `npm publish` | — | `latest` とパッケージページが更新される |
 
-`0.1.1`〜`0.1.3` は GitHub のみ進み、registry に載っているのは **`0.1.0` のみ** という状態になり得ます。タグと同じバージョンを npm に載せるには、必ず **手動 `npm publish`** か **[npm-publish workflow](../.github/workflows/npm-publish.yml)**（後述）が必要です。
+`0.1.1`〜`0.1.3` は GitHub のみ進み、registry に載っているのは **`0.1.0` のみ** という状態になり得ます。タグと同じバージョンを npm に載せるには、必ず **手動 `npm publish`** か **[npm-publish workflow](../.github/workflows/npm-publish.yml)** (後述) が必要です。
 
 ## private → public
 
 1. npm で `@s2j/acknowledgements` スコープを用意 (org が未作成なら npm に組織登録)
 2. ローカルで `npm publish --access public --dry-run` を実行し `files` フィールドを確認
 3. `git tag v0.1.0` (例) → push → [dist-zip workflow](../.github/workflows/dist-zip.yml) がタグで動作することを確認
-4. **`npm publish --access public`（2FA）** — 省略すると npmjs.com は古い `latest` のまま
+4. **`npm publish --access public` (2FA)** — 省略すると npmjs.com は古い `latest` のまま
 
-### GitHub Actions から publish（任意）
+### GitHub Actions から publish (任意)
 
 1. [npm Access Token](https://www.npmjs.com/settings/~tokens) で **Automation** または publish 権限付き Granular Token を発行
 2. リポジトリ Secret に `NPM_TOKEN` を登録
-3. tag push で [npm-publish workflow](../.github/workflows/npm-publish.yml) が動く。既存タグのみ追い付けたいときは Actions から **workflow_dispatch** で実行（`main` の `package.json` バージョンが publish される）
+3. tag push で [npm-publish workflow](../.github/workflows/npm-publish.yml) が動く。既存タグのみ追い付けたいときは Actions から **workflow_dispatch** で実行 (`main` の `package.json` バージョンが publish される)
 
 ## ステージ公開
 

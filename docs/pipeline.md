@@ -57,6 +57,9 @@ syft scan dir:{path} -o spdx-json={out} --exclude {pattern} ...
 1. 各スキャンで SPDX JSON を生成
 2. パッケージ一覧を結合 (重複は `name@version` で一意化)
 3. マージ結果を `{workDir}/sbom.spdx.json` として保存
+4. **SPDX 前処理** (Feluda / onot の前、`prepareSpdxFile`):
+   * **匿名化**: スキャン絶対パス → `{SCAN:<label>}`、ホストルート → `{HOST_ROOT}`、`$HOME` → `{HOME}`。ドキュメント名 `merged-sbom` → `host-sbom`
+   * **除去**: `packages[].name` がパス型 (先頭 `/`、`{SCAN:…}` / `{HOME}` 等) の行を削除。コンポーネント名 (`s2j-about-window` 等) は残す
 
 `composer.lock` のみを Syft 入力にする運用は **v1非対象** (将来 v1.1)。v1では `vendor/` ディレクトリスキャンを使います。
 
@@ -76,13 +79,14 @@ SPDX ドキュメント ID 等の細部は実装時に SPDX JSON 構造に合わ
 
 ### 目的
 
-* SPDX に欠けているライセンス ID の補完
+* SPDX に欠けているライセンス ID の補完 (**前処理後の** `sbom.spdx.json` に対して in-place 上書き)
 * 監査モードでの警告 (CI ゲート用途)
 
 ### v1デフォルト
 
 * 真の既定値は **`presets/<name>/defaults.json` マージ後** (正本: [presets.md](./presets.md) / `presets/`)
 * 現状: `macos-app` / `dir` は `false`、`wordpress` は `true`
+* **macOS 実ホスト** (Cozy Brew 等): 配布用品質では `pipeline.feluda: true` を推奨 ([install.md](./install.md) で `feluda` を PATH に用意 → `doctor` で確認)
 * 有効時のみ子プロセスを起動。失敗時は非ゼロ exit で終了 (設定で `feluda.strict` を将来追加可)
 
 ### インストール

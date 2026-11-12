@@ -2,6 +2,22 @@
 
 ## unreleased
 
+## 0.1.6 - 2026-11-12
+
+### Added
+
+* `prepareSpdxFile`: マージ後 SBOM を匿名化 (`{SCAN:*}` / `{HOST_ROOT}` / `{HOME}`) し、パス型 `packages[].name` を除去してから Feluda / onot に渡す
+* Feluda 有効例: [examples/cozy-brew/ack.config.feluda.example.json](./examples/cozy-brew/ack.config.feluda.example.json)
+
+### Fixed
+
+* `generate`: `--config` 省略時は `{cwd}/ack.config.json` (`doctor` と同じ)
+
+### Changed
+
+* docs: [pipeline.md](./docs/pipeline.md) に前処理手順、macOS 実ホストでの Feluda 推奨
+* docs: Cozy Brew `init` / `doctor` / `generate` 記録を [test-results.md](./docs/test-results.md) に追記
+
 ## 0.1.5 - 2026-11-12
 
 ### Changed

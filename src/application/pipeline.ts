@@ -3,6 +3,7 @@ import { dirname, join, resolve } from "node:path";
 
 import { copyArtifactFile } from "../adapters/copy-artifact.js";
 import type { AckConfig } from "../domain/ack-config.js";
+import { prepareSpdxFile } from "../domain/spdx-anonymize.js";
 import { intermediatePathsToRemove, isOutputInsideWorkDir } from "../domain/workdir-cleanup.js";
 import { runFeludaPass } from "./feluda.js";
 import { findOnotMarkdown } from "./onot-output.js";
@@ -116,6 +117,17 @@ export function runPipeline(options: PipelineOptions): number {
   }
 
   mergeSpdxDocuments(partialSboms, plan.sbomPath);
+  const spdxPrep = prepareSpdxFile(plan.sbomPath, {
+    hostRoot: options.hostRoot,
+    targets: plan.targets,
+  });
+  if (options.verbose) {
+    console.error(
+      `verbose: SPDX prepared (${plan.sbomPath}, dropped ${spdxPrep.droppedPathPackages} path-like packages)`,
+    );
+  } else if (spdxPrep.droppedPathPackages > 0) {
+    console.error(`info: dropped ${spdxPrep.droppedPathPackages} path-like SPDX package(s) before onot`);
+  }
 
   const useFeluda = plan.feluda && !options.skipFeluda;
   if (useFeluda) {
