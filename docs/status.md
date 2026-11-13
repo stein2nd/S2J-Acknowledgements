@@ -4,7 +4,7 @@
 
 索引は [specs.md](./specs.md) です。タスク ID の正本は [implementation.md](./implementation.md) です。
 
-**npm:** `@s2j/acknowledgements` **0.1.10** (`latest` 想定、tag `v0.1.10` + [npm-publish](../.github/workflows/npm-publish.yml) + dist-zip CI)。
+**npm:** `@s2j/acknowledgements` **0.1.10** (`latest`、tag `v0.1.10` + [npm-publish](../.github/workflows/npm-publish.yml) + dist-zip CI)。
 
 **v1到達 (2026-11-13):** `dir` 手動 E2E、npm 公開・[S2J Cozy Brew](https://github.com/stein2nd/s2j-cozy-brew) で `init` / `doctor` / `generate` / Resources 同梱 / [S2J About Window](https://github.com/stein2nd/s2j-about-window) の License、Acknowledgements 表示まで確認 ([test-results.md](./test-results.md))。
 
