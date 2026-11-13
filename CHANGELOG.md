@@ -2,6 +2,12 @@
 
 ## unreleased
 
+## 0.1.11.1 - 2026-11-13
+
+### Fixed
+
+* CI dist-zip: Prettier 整形 (`notice-document-name.ts`)。tag `v0.1.11` の dist-zip 失敗を解消
+
 ## 0.1.11 - 2026-11-13
 
 ### Added
