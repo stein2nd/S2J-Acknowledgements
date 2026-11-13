@@ -87,7 +87,7 @@ s2j-acknowledgements doctor --config ack.config.json
 
 ## CI 例 (概念)
 
-`init` は **冪等** (既存 `ack.config.json` はスキップ、exit `0`) のため、毎ジョブ実行しても構いません。`venv/` は **キャッシュ** するか、毎回 `init` で再構築するかを選びます。いずれも Git には載せません。
+`init` は **冪等** (既存 `ack.config.json` はスキップ、exit `0`) のため、毎ジョブ実行してもかまいません。`venv/` は **キャッシュ** するか、毎回 `init` で再構築するかを選びます。いずれも Git には載せません。
 
 中間 SBOM は artifact として残すかはホスト方針です。デフォルトでは `build/oss-notice/` を `.gitignore` 推奨。
 
@@ -98,7 +98,7 @@ s2j-acknowledgements doctor --config ack.config.json
   with:
     python-version: "3.12"
 - run: npx s2j-acknowledgements init --preset macos-app
-  # リポジトリに .gitignore が無い初回のみ: --write-gitignore
+  # リポジトリに .gitignore がない初回のみ: --write-gitignore
 - run: npm run ack:doctor   # ack.config.json を scripts 側で --config 付き推奨
 - run: npm run ack:generate
   env:

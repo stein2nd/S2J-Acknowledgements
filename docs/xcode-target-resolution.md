@@ -1,7 +1,7 @@
 # S2J Acknowledgements - Xcode ターゲット解決
 
 `macos-app` プリセットで Release `.app` を見つける手順です。
-**ホストプロジェクトルート** は [cli.md](./cli.md) に従い `--cwd` (デフォルト `process.cwd()`) です。`ack.config.json` は通常このルートに置きます。`package.json` が無いホスト (例: WordPress のみ) でも、`ack.config.json` + `--cwd` で運用します。
+**ホストプロジェクトルート** は [cli.md](./cli.md) に従い `--cwd` (デフォルト `process.cwd()`) です。`ack.config.json` は通常このルートに置きます。`package.json` がないホスト (例: WordPress のみ) でも、`ack.config.json` + `--cwd` で運用します。
 
 ## 優先順位
 

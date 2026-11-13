@@ -21,4 +21,16 @@ describe("parse-build-settings", () => {
     };
     expect(appPathFromBuildSettings(s)).toBe("/Products/Foo.app");
   });
+
+  it("prefers xcode.productName over merged framework WRAPPER_NAME", () => {
+    const s = {
+      BUILT_PRODUCTS_DIR: "/Products/Release",
+      WRAPPER_NAME: "CozyBrewCore.framework",
+      FULL_PRODUCT_NAME: "CozyBrewCore.framework",
+    };
+    expect(appPathFromBuildSettings(s)).toBeNull();
+    expect(appPathFromBuildSettings(s, "CozyBrewApp.app")).toBe(
+      "/Products/Release/CozyBrewApp.app",
+    );
+  });
 });

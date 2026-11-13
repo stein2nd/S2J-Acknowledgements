@@ -48,7 +48,7 @@ v1では JSON Schema ファイル (`schema/ack.config.schema.json`) の同梱を
 | `xcode.productName` | string | いいえ | DerivedData 探索時の絞り込み (`CozyBrewApp.app`) |
 | `xcode.merge` | string[] | いいえ | デフォルト `["app", "spm-checkouts"]` (`macos-app`) |
 | `pipeline` | object | いいえ | パイプライン制御 |
-| `pipeline.feluda` | boolean | いいえ | プリセット既定: `macos-app` / `wordpress` `true`、`dir` `false` |
+| `pipeline.feluda` | boolean | いいえ | プリセットデフォルト: `macos-app` / `wordpress` `true`、`dir` `false` |
 | `pipeline.feludaArgs` | string[] | いいえ | Feluda 引数。`{sbom}` はマージ後 SBOM パス。未指定時は `--sbom-input` / `--sbom-enriched` |
 | `pipeline.noticeDenylist` | string[] | いいえ | Notice から省く SPDX `packages[].name` glob (`actions/*` 等)。[pipeline.md](./pipeline.md) |
 | `pipeline.onotFormat` | string | いいえ | v1は `md` のみ |
@@ -119,10 +119,19 @@ v1では JSON Schema ファイル (`schema/ack.config.schema.json`) の同梱を
 
 ### 内容 (概念)
 
-著作権者・連絡先・年など、**Notice テンプレートのメタデータ** を記述します。
+**Notice テンプレートのメタデータ** を記述します (onot **1.2.x** は `company:` 配下)。
 サードパーティーパッケージのライセンス本文そのものは SBOM / onot が解決します。
 
-具体キーは [onot 公式](https://github.com/sktelecom/onot) の設定例に従い、リポジトリの `presets/` に **サンプル1件** を置きます (実装時)。
+```yaml
+company:
+  organization: "Your Org"
+  copyright_holder: "Your Org"
+  copyright_year: 2026
+  contact_email: "you@example.com"
+  source_download_url: "https://github.com/you/repo"
+```
+
+トップレベルの `organization` 等は onot v1.2では **拒否** されます (`extra_forbidden`)。CLI `--help` のフラット列挙は `company` ネストと同義です。ひな型: [presets/shared/onot.yaml.example](../presets/shared/onot.yaml.example)。
 
 ## 環境変数 (オプション)
 

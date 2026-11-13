@@ -1,3 +1,10 @@
-# Copied by `init` to host `onot.yaml` when the preset has no dedicated example.
-# Keys follow upstream onot; customize copyright holder metadata for your host project.
-# See config-schema.md and https://github.com/sktelecom/onot
+# onot 1.2.x — copied by `init` when the preset has no dedicated example.
+# Notice metadata is under `company:` (see onot Settings in upstream).
+# https://github.com/sktelecom/onot
+
+company:
+  organization: ""
+  copyright_holder: ""
+  copyright_year: 2026
+  contact_email: ""
+  source_download_url: ""

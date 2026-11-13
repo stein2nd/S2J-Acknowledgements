@@ -49,8 +49,8 @@ SBOM に載るコンポーネントは、必ずしも実行時依存だけでは
 | CLI 契約 (`init` / `doctor` / `generate`) | [cli.md](./cli.md) | 要約・例のみ |
 | 設定フィールド | [config-schema.md](./config-schema.md) + `schema/ack.config.schema.json` | JSON 例 |
 | Syft / マージ / 成果物コピー | [pipeline.md](./pipeline.md) | 概念リンク |
-| プリセット既定値 | [presets.md](./presets.md) + `presets/<name>/defaults.json` | config 例は同期 |
-| 外部ツール・venv | [install.md](./install.md) + `config/recommended-tools.json` | `doctor` メッセージ |
+| プリセットデフォルト値 | [presets.md](./presets.md) + `presets/<name>/defaults.json` | config 例は同期 |
+| 外部ツール、venv | [install.md](./install.md) + `config/recommended-tools.json` | `doctor` メッセージ |
 | Xcode `.app` 解決 | [xcode-target-resolution.md](./xcode-target-resolution.md) | — |
 | 設計決定ログ | [decisions/](./decisions/) | ADR 参照 |
 
@@ -96,10 +96,10 @@ SBOM に載るコンポーネントは、必ずしも実行時依存だけでは
 
 ### 仕様書のライフサイクル
 
-1. **草案:** `docs_mod/` で記述 (2026-11-12 〜 確定まで)。
+1. **草案:** `docs_mod/` で記述 (2026-11-12〜 確定まで)。
 2. **確定:** 必要に応じ既存 `docs/*.md` を `docs/archive/` に退避する。
 3. **公開正本:** 確定版を **`docs/`** に配置 (**完了:** 2026-11-12)。
 
 ## ステータス
 
-**正本:** 2026-11-12 確定。`docs_mod/` は同日スナップショットを保持。
+**正本:** 2026-11-12確定。`docs_mod/` は同日スナップショットを保持。

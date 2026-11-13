@@ -1,13 +1,13 @@
 # S2J Acknowledgements — npm 公開手順
 
-v1 初回公開のチェックリストです。
+v1初回公開のチェックリストです。
 
 ## 前提
 
 * `npm run lint` / `npm run test` / `npm run test:doctor` が green
 * 手動 E2E ([e2e.md](./e2e.md)) が [test-results.md](./test-results.md) に記録済み
 * [CHANGELOG.md](../CHANGELOG.md) にバージョン節を記載
-* `package.json` の `version` と git tag を一致させる
+* `package.json` の `version` と Git tag を一致させる
 
 ## GitHub と npm は自動連動しない
 
@@ -41,7 +41,7 @@ npm が [Staged publishing](https://docs.npmjs.com/staged-publishing/) を使う
 | 見え方 | 意味 |
 | --- | --- |
 | npm ページがほぼ空・`0.0.0-stage` | 名前確保用。正常 (初回のよくある状態) |
-| `npm view @s2j/acknowledgements` が 404 / Not found | 本番 tarball は未承認の可能性大 |
+| `npm view @s2j/acknowledgements` が `404` / Not found | 本番 tarball は未承認の可能性大 |
 | リポジトリの `0.1.0` | ローカル/Git の正。npm と一致させるには承認または `npm publish` |
 
 ### 承認手順 (ステージ済みのとき)

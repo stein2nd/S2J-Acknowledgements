@@ -9,8 +9,8 @@ v1向けの実装 initiative タスクです。状態は [status.md](./status.md
 | ホスト venv / `init` 冪等 | 採用 | [decisions/001-venv-and-init.md](./decisions/001-venv-and-init.md) |
 | 仕様正本 | マトリックス + 機械可読 | [decisions/002-canonical-sources.md](./decisions/002-canonical-sources.md)、[specs.md](./specs.md) |
 | SPDX マージ / Syft exclude | 2+ 対象でマージ | [decisions/003-spdx-merge-and-syft.md](./decisions/003-spdx-merge-and-syft.md)、[pipeline.md](./pipeline.md) |
-| Feluda 既定 | `macos-app` / `wordpress` `true`、`dir` `false` | `presets/*/defaults.json` |
-| `composer.lock` のみ | v1非対象 | ADR 003 |
+| Feluda デフォルト | `macos-app` / `wordpress` `true`、`dir` `false` | `presets/*/defaults.json` |
+| `composer.lock` のみ | v1非対象 | ADR-003 |
 
 ## 非目的
 
@@ -35,7 +35,7 @@ v1向けの実装 initiative タスクです。状態は [status.md](./status.md
 | --- | --- | --- |
 | P1-01 | `which` + バージョン取得 (syft, onot) | **完了** (推奨版 semver の WARN は簡易) |
 | P1-02 | Python v3.11+ 検出 | **完了** |
-| P1-03 | Feluda 任意チェック | **完了** (`--config` / `ACK_CONFIG` あり時) |
+| P1-03 | Feluda 任意チェック | **完了** (`--config` / `ACK_CONFIG` ありの場合) |
 | P1-04 | exit code 契約 ([cli.md](./cli.md)) | **完了** (`scripts/test-doctor.sh` ACK-001〜006) |
 | P1-05 | `scripts/test-doctor.sh` (docs-linter 同型) | **完了** (CI dist-zip に組込み) |
 | P1-06 | `.gitignore` 行判定 ([cli.md](./cli.md)) | **完了** |

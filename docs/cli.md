@@ -35,7 +35,7 @@ s2j-acknowledgements generate --config ack.config.json
 | **デフォルト設定** | `{ホストルート}/ack.config.json` |
 | **環境変数** | `ACK_CONFIG` は `--config` より **優先度が低い** ([config-schema.md](./config-schema.md)) |
 
-`xcode-target-resolution.md` の「`package.json` / `ack.config.json` があるディレクトリ」は、**生成時は `--cwd` と `ack.config.json` の所在**を正とします (`package.json` 単体のリポジトリは `wordpress` 等でも可)。
+`xcode-target-resolution.md` の「`package.json` / `ack.config.json` があるディレクトリ」は、**生成時は `--cwd` と `ack.config.json` の所在** を正とします (`package.json` 単体のリポジトリは `wordpress` 等でも可)。
 
 ## `init`
 
@@ -49,31 +49,31 @@ s2j-acknowledgements generate --config ack.config.json
 | --- | --- | --- |
 | `--preset <name>` | **はい** | `macos-app` / `wordpress` / `dir`。省略時 exit `2` |
 | `--cwd <path>` | いいえ | ホストルート (デフォルト: `process.cwd()`) |
-| `--force` | いいえ | 既存 `ack.config.json` を上書き (設定のみ。venv は対象外) |
+| `--force` | いいえ | 既存 `ack.config.json` をオーバーライト (設定のみ。venv は対象外) |
 | `--write-gitignore` | いいえ | **`.gitignore` がない場合のみ** 最小ファイルを新規作成 (`venv/` と `build/oss-notice/` を含む) |
 
 `init` は `package.json` を変更しません。scripts 追加は [usage.md](./usage.md) を参照してください。
 
 ### 作成・更新する成果物
 
-`init` が書き込む `ack.config.json` には、プリセット既定どおり **`tools.venvPath`: `"venv"`** を含めます。
+`init` が書き込む `ack.config.json` には、プリセットデフォルトどおり **`tools.venvPath`: `"venv"`** を含めます。
 
 | 成果物 | デフォルト動作 |
 | --- | --- |
-| `ack.config.json` | 未存在時のみ、`presets/<preset>/defaults.json` をベースに作成。既存時は **スキップ** (WARN、**exit `0`**) 。上書きは `--force` のみ |
-| `onot.yaml` | `presets/<preset>/onot.yaml.example`、無ければ `presets/shared/onot.yaml.example` をコピー (未存在時のみ) |
+| `ack.config.json` | 未存在時のみ、`presets/<preset>/defaults.json` をベースに作成。既存時は **スキップ** (WARN、**exit `0`**)。オーバーライトは `--force` のみ |
+| `onot.yaml` | `presets/<preset>/onot.yaml.example`、なければ `presets/shared/onot.yaml.example` をコピー (未存在時のみ) |
 | `./venv/` | 未存在時: `python3 -m venv` → `pip install` で onot + openpyxl をピン留め ([install.md](./install.md))。既存時は **破壊しない** |
 | 壊れた venv | `bin/onot` が無効なら **WARN**、`init` は再作成しない。`generate` は exit `1`。修復は将来の `--repair-venv` |
 
 ### 冪等性 (`init` 再実行)
 
-CI や手元で **何度でも安全に再実行**できることを v1の前提とします。
+CI や手元で **何度でも安全に再実行** できることを v1の前提とします。
 
 | 状態 | `ack.config.json` | `venv/` | exit |
 | --- | --- | --- | --- |
 | 初回 | 作成 | 作成 | `0` |
 | 2回目以降 (通常) | スキップ (WARN) | スキップ | `0` |
-| `--force` | 上書き | 変更しない | `0` / 失敗時 `1` |
+| `--force` | オーバーライト | 変更しない | `0` / 失敗時 `1` |
 | `--preset` 未知 | — | — | `2` |
 | Python v3.11+ 不在 | — | 作成失敗 | `2` / `1` |
 
@@ -100,9 +100,9 @@ CI や手元で **何度でも安全に再実行**できることを v1の前提
 
 | Code | 意味 |
 | --- | --- |
-| `0` | 成功 (スキップ・WARN のみ含む) |
+| `0` | 成功 (スキップ、WARN のみ含む) |
 | `1` | venv 作成または `pip install` 失敗 |
-| `2` | `--preset` 省略・未知、Python 3.11+ 不在 |
+| `2` | `--preset` 省略・未知、Python v3.11+ 不在 |
 
 ## `doctor`
 
@@ -112,7 +112,7 @@ CI や手元で **何度でも安全に再実行**できることを v1の前提
 
 | モード | 起動条件 | スコープ |
 | --- | --- | --- |
-| **基本** | `--config` も `ACK_CONFIG` も無い、または設定ファイルが存在しない | Node、Python、`syft`、onot 解決、`venv`、`.gitignore` (上記判定)。**Feluda はスキップ** |
+| **基本** | `--config` も `ACK_CONFIG` もない、または設定ファイルが存在しない | Node、Python、`syft`、onot 解決、`venv`、`.gitignore` (上記判定)。**Feluda はスキップ** |
 | **フル** | `--config <path>` または `ACK_CONFIG`、かつファイルが読める | 基本に加え、マージ後設定の `pipeline.feluda` に従い Feluda を必須化 |
 
 ### 確認項目 (共通)
@@ -133,7 +133,7 @@ CI や手元で **何度でも安全に再実行**できることを v1の前提
 | 区分 | チェック |
 | --- | --- |
 | `feluda` | `pipeline.feluda: true` のときのみ必須。`false` なら未インストール可 |
-| `onot.yaml` | `pipeline.onotConfig` が指すファイルの存在 (無ければ WARN。生成は v1 でも試行する — [pipeline.md](./pipeline.md)) |
+| `onot.yaml` | `pipeline.onotConfig` が指すファイルの存在 (なければ WARN。生成は v1でも試行する — [pipeline.md](./pipeline.md)) |
 
 ### 出力
 
@@ -199,7 +199,7 @@ CI の `npm run test:doctor` (`scripts/test-doctor.sh`) が再現する最小契
 | ID | コマンド | exit | 出力に含む |
 | --- | --- | --- | --- |
 | ACK-001 | `help` | `0` | `init` |
-| ACK-002 | `generate` (ホストルートに `ack.config.json` なし) | `2` | `config not found`、 `ack.config.json` |
+| ACK-002 | `generate` (ホストルートに `ack.config.json` なし) | `2` | `config not found`、`ack.config.json` |
 | ACK-003 | `init` (`--preset` なし) | `2` | `--preset` |
 | ACK-004 | `not-a-command` | `2` | (任意) |
 | ACK-005 | `generate` + 不正設定 (`--cwd` サンドボックス) | `2` | `validation failed` |

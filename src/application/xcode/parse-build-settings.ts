@@ -12,11 +12,22 @@ export function parseBuildSettings(stdout: string): Record<string, string> {
   return settings;
 }
 
-export function appPathFromBuildSettings(settings: Record<string, string>): string | null {
+export function appPathFromBuildSettings(
+  settings: Record<string, string>,
+  productName?: string,
+): string | null {
   const productsDir = settings.BUILT_PRODUCTS_DIR;
   if (!productsDir) return null;
+
+  if (productName) {
+    const want = productName.endsWith(".app") ? productName : `${productName}.app`;
+    return `${productsDir}/${want}`;
+  }
+
   const wrapper = settings.WRAPPER_NAME ?? settings.FULL_PRODUCT_NAME;
   if (!wrapper) return null;
-  const name = wrapper.endsWith(".app") ? wrapper : `${wrapper}.app`;
-  return `${productsDir}/${name}`;
+  if (!wrapper.endsWith(".app")) {
+    return null;
+  }
+  return `${productsDir}/${wrapper}`;
 }

@@ -4,9 +4,9 @@
   "workDir": "build/oss-notice",
   "xcode": {
     "project": "CozyBrew.xcodeproj",
-    "scheme": "CozyBrew",
+    "scheme": "CozyBrewApp",
     "configuration": "Release",
-    "productName": "CozyBrew.app",
+    "productName": "CozyBrewApp.app",
     "merge": ["app", "spm-checkouts"]
   },
   "tools": {

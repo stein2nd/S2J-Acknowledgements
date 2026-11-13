@@ -91,7 +91,7 @@ Release ビルド済み `.app` と、Swift Package Manager の checkouts など�
 ### Feluda
 
 PHP / Composer 主体ではライセンス穴が出やすいため、**`presets/wordpress/defaults.json` は `pipeline.feluda: true`** とします。`macos-app` も配布品質のため `true`。`dir` は `false`。
-ホストの `ack.config.json` で上書き可能です。
+ホストの `ack.config.json` でオーバーライト可能です。
 
 ### 出力
 
@@ -111,7 +111,7 @@ PHP / Composer 主体ではライセンス穴が出やすいため、**`presets/
 ## プリセットの適用順序
 
 1. パッケージ内 `presets/<name>/defaults.json` (同梱・**機械可読の正本**)
-2. ホストの `ack.config.json` で上書き (詳細は [domain.md](./domain.md) のマージ規則)
+2. ホストの `ack.config.json` でオーバーライト (詳細は [domain.md](./domain.md) のマージ規則)
 
 ## パッケージレイアウト (予定)
 

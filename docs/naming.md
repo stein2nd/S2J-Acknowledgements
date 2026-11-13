@@ -77,5 +77,5 @@ S2J シリーズにおける、本プロジェクトと npm パッケージの�
 
 ## バージョン方針 (草案)
 
-* 初回公開は **0.1.0** (CLI 骨格 + `init` + `macos-app` / `dir` 最小実装。**`wordpress` プリセットは v1 推奨**として `defaults.json` 同梱)。
+* 初回公開は **0.1.0** (CLI 骨格 + `init` + `macos-app` / `dir` 最小実装。**`wordpress` プリセットは v1推奨** として `defaults.json` 同梱)。
 * Syft / onot / Feluda のバージョンは npm の semver とは独立し、README と `doctor` の **推奨ピン** としてドキュメント化する (詳細は [install.md](./install.md))。

@@ -1,2 +1,9 @@
-# macOS app host — customize before generate.
-# See presets/shared/onot.yaml.example and upstream onot documentation.
+# macOS app host — customize before `generate`.
+# See presets/shared/onot.yaml.example and https://github.com/sktelecom/onot
+
+company:
+  organization: ""
+  copyright_holder: ""
+  copyright_year: 2026
+  contact_email: ""
+  source_download_url: ""

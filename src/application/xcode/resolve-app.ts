@@ -60,7 +60,7 @@ export function resolveMacAppPath(
     const result = runCommand(xcodebuild, args, { cwd: hostRoot });
     if (result.ok) {
       const settings = parseBuildSettings(result.stdout);
-      const built = appPathFromBuildSettings(settings);
+      const built = appPathFromBuildSettings(settings, cfg.productName);
       if (built && existsSync(built)) {
         return {
           ok: true,

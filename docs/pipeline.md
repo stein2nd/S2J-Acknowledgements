@@ -33,7 +33,7 @@ Syft / Feluda / onot を直列に実行するオーケストレーション仕�
 
 ### `scan.exclude` (v1)
 
-`ack.config.json` の `scan.exclude[]` は、各 Syft 呼び出しに次の形で渡します (1 エントリ 1 フラグ)。
+`ack.config.json` の `scan.exclude[]` は、各 Syft 呼び出しに次の形で渡します (1エントリ、1フラグ)。
 
 ```text
 syft scan dir:{path} -o spdx-json={out} --exclude {pattern} ...
@@ -60,7 +60,7 @@ syft scan dir:{path} -o spdx-json={out} --exclude {pattern} ...
 4. **SPDX 前処理** (Feluda / onot の前、`prepareSpdxFile`):
    * **匿名化**: スキャン絶対パス → `{SCAN:<label>}`、ホストルート → `{HOST_ROOT}`、`$HOME` → `{HOME}`。ドキュメント名 `merged-sbom` → `host-sbom`
    * **除去**: `packages[].name` がパス型 (先頭 `/`、`{SCAN:…}` / `{HOME}` 等) の行を削除。コンポーネント名 (`s2j-about-window` 等) は残す
-   * **Notice denylist**: `pipeline.noticeDenylist[]` の glob に一致する `name` を削除 (CI Action 等、配布物に含めないコンポーネント)。`macos-app` 既定: `actions/*` / `codecov/*` / `maxim-lobanov/*`
+   * **Notice denylist**: `pipeline.noticeDenylist[]` の glob に一致する `name` を削除 (CI Action 等、配布物に含めないコンポーネント)。`macos-app` デフォルト: `actions/*` / `codecov/*` / `maxim-lobanov/*`
 
 `composer.lock` のみを Syft 入力にする運用は **v1非対象** (将来 v1.1)。v1では `vendor/` ディレクトリスキャンを使います。
 
@@ -80,14 +80,14 @@ SPDX ドキュメント ID 等の細部は実装時に SPDX JSON 構造に合わ
 
 ### 目的
 
-* SPDX に欠けているライセンス ID の補完 (**前処理後の** `sbom.spdx.json` に対して in-place 上書き)
+* SPDX に欠けているライセンス ID の補完 (**前処理後の** `sbom.spdx.json` に対して in-place オーバーライト)
 * 監査モードでの警告 (CI ゲート用途)
 
 ### v1デフォルト
 
-* 真の既定値は **`presets/<name>/defaults.json` マージ後** (正本: [presets.md](./presets.md) / `presets/`)
+* 真のデフォルト値は **`presets/<name>/defaults.json` マージ後** (正本: [presets.md](./presets.md) / `presets/`)
 * 現状: `macos-app` / `wordpress` は `true`、`dir` は `false`
-* **macOS 実ホスト** (Cozy Brew 等): `init --preset macos-app` で Feluda 有効が既定。[install.md](./install.md) で `feluda` を PATH に用意 → `doctor` で確認
+* **macOS 実ホスト** (Cozy Brew 等): `init --preset macos-app` で Feluda 有効がデフォルト。[install.md](./install.md) で `feluda` を PATH に用意 → `doctor` で確認
 * 有効時のみ子プロセスを起動。失敗時は非ゼロ exit で終了 (設定で `feluda.strict` を将来追加可)
 
 ### インストール
@@ -96,7 +96,7 @@ brew 一択ではないため、[install.md](./install.md) のとおり `doctor`
 
 ### コマンド形 (v1)
 
-マージ済み SPDX を **その場で上書き** します ([Feluda SBOM ingest](https://feluda.readthedocs.io/en/stable/sbom/ingest/))。
+マージ済み SPDX を **その場でオーバーライト** します ([Feluda SBOM ingest](https://feluda.readthedocs.io/en/stable/sbom/ingest/))。
 
 ```text
 feluda --sbom-input {workDir}/sbom.spdx.json --sbom-enriched {workDir}/sbom.spdx.json
@@ -110,11 +110,11 @@ feluda --sbom-input {workDir}/sbom.spdx.json --sbom-enriched {workDir}/sbom.spdx
 
 * Syft (および Feluda 後) の SPDX JSON
 * `--config` で指定する **onot YAML** (`pipeline.onotConfig`、通常 `onot.yaml`)
-* ファイルが **無い** 場合: v1は **WARN を出し、`--config` なしで onot を試行** (失敗時は exit コードを子プロセスに従う)
+* ファイルが **ない** 場合: v1は **WARN を出し、`--config` なしで onot を試行** (失敗時は exit コードを子プロセスに従う)
 
 ### 出力
 
-onot 1.2.x の `generate -o` は **ディレクトリ** です。配下に `OSS_Notice_*.md` が 1 件できます。CLI は最新の `.md` を `{output}` にコピーします。
+onot v1.2.x の `generate -o` は **ディレクトリ** です。配下に `OSS_Notice_*.md` が1件できます。CLI は最新の `.md` を `{output}` にコピーします。
 
 ```text
 {workDir}/onot-notice/OSS_Notice_….md  →  {output}  (例: ACKNOWLEDGEMENTS.md)

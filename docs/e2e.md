@@ -31,6 +31,6 @@ node "${OLDPWD}/dist/bin/cli.js" generate --config ack.config.json --cwd .
 
 ## 記録
 
-成功したら [test-results.md](./test-results.md) に 1 行追記します (日付・環境・exit code・成果物パス)。本リポジトリは 2026-11-12 に `dir` で記録済みです。
+成功したら [test-results.md](./test-results.md) に1行追記します (日付、環境、exit code、成果物パス)。本リポジトリは2026-11-12に `dir` で記録済みです。
 
-**ホスト:** 手順のホストは **mktemp の一時ディレクトリ**であり、Cozy Brew 等の実リポジトリではありません。実アプリ統合は [usage.md](./usage.md) を参照します。
+**ホスト:** 手順のホストは **mktemp の一時ディレクトリ** であり、Cozy Brew 等の実リポジトリではありません。実アプリ統合は [usage.md](./usage.md) を参照します。

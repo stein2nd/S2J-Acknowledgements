@@ -1,6 +1,6 @@
 {
   "name": "@s2j/acknowledgements",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Generate Acknowledgements for third-party software, libraries, and tools used in your projects.",
   "type": "module",
   "license": "GPL-3.0-or-later",
@@ -20,7 +20,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "lint:docs": "s2j-docs-linter ./README.md ./CHANGELOG.md ./docs/**/*.md ./examples/**/*.md",
+    "lint:docs": "s2j-docs-linter ./README.md ./CHANGELOG.md ./docs/*.md ./docs/**/*.md ./docs_mod/*.md ./docs_mod/**/*.md  ./examples/**/*.md",
     "lint": "eslint . && npm run typecheck",
     "lint:fix": "eslint . --fix",
     "clean": "rm -rf dist",

@@ -12,13 +12,13 @@
 | Host Project | CLI を `devDependency` で入れ、`ack.config.json` を置くリポジトリ |
 | Ack venv | ホストルート直下の **`./venv/`**。`init` が作成し **onot** を入れる Python 仮想環境 (ホストのアプリ開発用 `.venv` とは別) |
 | Preset | ホスト種別ごとのデフォルトスキャン方針とパイプラインデフォルト値 |
-| Notice (onot 出力) | onot が `{workDir}/onot-notice/` に書く `OSS_Notice_*.md`。CLI が 1 件を選び **加工せず** 最終 `output` にコピー |
+| Notice (onot 出力) | onot が `{workDir}/onot-notice/` に書く `OSS_Notice_*.md`。CLI が1件を選び **加工せず** 最終 `output` にコピー |
 | ひな型 | `init` が作る設定・`onot.yaml` のスケルトン (README 等の「スケルトン」と同義) |
 
 ### プリセット適用マージ (v1)
 
 1. `presets/<preset>/defaults.json`
-2. ホスト `ack.config.json` で上書き
+2. ホスト `ack.config.json` でオーバーライト
 3. **浅いマージ**。ただし次オブジェクトは **深いマージ (1段)**: `pipeline`、`xcode`、`scan`、`syft`、`tools`
 4. `scanPaths` 等の配列は **ホストが指定したら丸ごと置換** (要素ごとのマージはしない)
 

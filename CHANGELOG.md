@@ -2,6 +2,22 @@
 
 ## unreleased
 
+## 0.1.10 - 2026-11-13
+
+### Fixed
+
+* macOS: `xcodebuild -showBuildSettings` 解決で `xcode.productName` を優先し、依存 framework の `WRAPPER_NAME` を `.app` と誤認しない (`parse-build-settings` / `resolve-app`)
+
+### Changed
+
+* `init` 用 `onot.yaml` ひな型を onot **1.2.x** の `company:` ネストに更新 (`presets/shared`・`presets/macos-app`)
+* [examples/cozy-brew](./examples/cozy-brew/) — `scheme` / `productName` を **CozyBrewApp** に修正
+
+### Added
+
+* Vitest — `productName` 優先と非 `.app` `WRAPPER_NAME` の扱い
+* docs: [config-schema.md](./docs/config-schema.md) に onot v1.2 `company:` 例とフラット YAML 不可の注記
+
 ## 0.1.9 - 2026-11-12
 
 ### Added
