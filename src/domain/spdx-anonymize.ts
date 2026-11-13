@@ -85,12 +85,61 @@ export function prunePathLikePackages(doc: Record<string, unknown>): number {
   return before - (doc.packages as unknown[]).length;
 }
 
-export type PrepareSpdxResult = { droppedPathPackages: number };
+/** Glob-like SPDX package `name` match (`actions/*`, exact names). */
+export function matchesNoticeDenylist(name: string, patterns: string[]): boolean {
+  const n = name.trim();
+  if (!n || patterns.length === 0) return false;
+  for (const pattern of patterns) {
+    const p = pattern.trim();
+    if (!p) continue;
+    if (p.endsWith("/*")) {
+      if (n.startsWith(p.slice(0, -1))) return true;
+      continue;
+    }
+    if (p.includes("*")) {
+      const re = new RegExp(`^${p.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*")}$`);
+      if (re.test(n)) return true;
+      continue;
+    }
+    if (n === p) return true;
+  }
+  return false;
+}
+
+export function pruneNoticeDenylistPackages(
+  doc: Record<string, unknown>,
+  patterns: string[],
+): number {
+  if (patterns.length === 0) return 0;
+  const packages = doc.packages;
+  if (!Array.isArray(packages)) return 0;
+  const before = packages.length;
+  doc.packages = packages.filter((pkg) => {
+    if (!pkg || typeof pkg !== "object") return true;
+    const name = (pkg as { name?: string }).name;
+    if (typeof name !== "string") return true;
+    return !matchesNoticeDenylist(name, patterns);
+  });
+  return before - (doc.packages as unknown[]).length;
+}
+
+export type PrepareSpdxResult = {
+  droppedPathPackages: number;
+  droppedNoticePackages: number;
+};
+
+export type PrepareSpdxOptions = {
+  noticeDenylist?: string[];
+};
 
 /**
  * Anonymize paths, drop path-shaped package rows, then write SPDX for Feluda / onot.
  */
-export function prepareSpdxFile(filePath: string, ctx: SpdxAnonymizeContext): PrepareSpdxResult {
+export function prepareSpdxFile(
+  filePath: string,
+  ctx: SpdxAnonymizeContext,
+  options: PrepareSpdxOptions = {},
+): PrepareSpdxResult {
   const replacements = buildSpdxPathReplacements(ctx);
   const doc = JSON.parse(readFileSync(filePath, "utf8")) as Record<string, unknown>;
   const anon = anonymizeSpdxValue(doc, replacements) as Record<string, unknown>;
@@ -100,6 +149,8 @@ export function prepareSpdxFile(filePath: string, ctx: SpdxAnonymizeContext): Pr
   }
 
   const droppedPathPackages = prunePathLikePackages(anon);
+  const noticeDenylist = options.noticeDenylist ?? [];
+  const droppedNoticePackages = pruneNoticeDenylistPackages(anon, noticeDenylist);
   writeFileSync(filePath, `${JSON.stringify(anon, null, 2)}\n`, "utf8");
-  return { droppedPathPackages };
+  return { droppedPathPackages, droppedNoticePackages };
 }

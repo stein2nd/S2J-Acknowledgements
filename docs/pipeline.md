@@ -60,6 +60,7 @@ syft scan dir:{path} -o spdx-json={out} --exclude {pattern} ...
 4. **SPDX 前処理** (Feluda / onot の前、`prepareSpdxFile`):
    * **匿名化**: スキャン絶対パス → `{SCAN:<label>}`、ホストルート → `{HOST_ROOT}`、`$HOME` → `{HOME}`。ドキュメント名 `merged-sbom` → `host-sbom`
    * **除去**: `packages[].name` がパス型 (先頭 `/`、`{SCAN:…}` / `{HOME}` 等) の行を削除。コンポーネント名 (`s2j-about-window` 等) は残す
+   * **Notice denylist**: `pipeline.noticeDenylist[]` の glob に一致する `name` を削除 (CI Action 等、配布物に含めないコンポーネント)。`macos-app` 既定: `actions/*` / `codecov/*` / `maxim-lobanov/*`
 
 `composer.lock` のみを Syft 入力にする運用は **v1非対象** (将来 v1.1)。v1では `vendor/` ディレクトリスキャンを使います。
 
@@ -85,8 +86,8 @@ SPDX ドキュメント ID 等の細部は実装時に SPDX JSON 構造に合わ
 ### v1デフォルト
 
 * 真の既定値は **`presets/<name>/defaults.json` マージ後** (正本: [presets.md](./presets.md) / `presets/`)
-* 現状: `macos-app` / `dir` は `false`、`wordpress` は `true`
-* **macOS 実ホスト** (Cozy Brew 等): 配布用品質では `pipeline.feluda: true` を推奨 ([install.md](./install.md) で `feluda` を PATH に用意 → `doctor` で確認)
+* 現状: `macos-app` / `wordpress` は `true`、`dir` は `false`
+* **macOS 実ホスト** (Cozy Brew 等): `init --preset macos-app` で Feluda 有効が既定。[install.md](./install.md) で `feluda` を PATH に用意 → `doctor` で確認
 * 有効時のみ子プロセスを起動。失敗時は非ゼロ exit で終了 (設定で `feluda.strict` を将来追加可)
 
 ### インストール

@@ -2,11 +2,16 @@
   "preset": "macos-app",
   "output": "ACKNOWLEDGEMENTS.md",
   "workDir": "build/oss-notice",
+  "scan": {
+    "exclude": ["**/.github/**", "**/.git/**", "**/node_modules/**"]
+  },
   "tools": {
     "venvPath": "venv"
   },
   "pipeline": {
-    "feluda": false,
+    "feluda": true,
+    "feludaArgs": ["--sbom-input", "{sbom}", "--sbom-enriched", "{sbom}"],
+    "noticeDenylist": ["actions/*", "codecov/*", "maxim-lobanov/*"],
     "onotFormat": "md",
     "onotConfig": "onot.yaml"
   },

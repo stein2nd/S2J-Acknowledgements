@@ -23,7 +23,11 @@ Release ビルド済み `.app` と、Swift Package Manager の checkouts など�
 
 ### スキャン (デフォルト)
 
-`.github` 等の不要パス除外は Syft の除外設定または `syft.extraArgs` で扱います (実装 initiative でリスト化)。
+| 設定 | 値 (`presets/macos-app/defaults.json`) |
+| --- | --- |
+| `scan.exclude` | `**/.github/**`、`**/.git/**`、`**/node_modules/**` (各 Syft `dir:` に `--exclude`) |
+| `pipeline.noticeDenylist` | `actions/*`、`codecov/*`、`maxim-lobanov/*` (SPDX 前処理) |
+| `pipeline.feluda` | `true` (配布用 Notice。未導入時は `doctor` が誘導) |
 
 | `xcode.merge` 要素 | スキャン対象 |
 | --- | --- |
@@ -86,7 +90,7 @@ Release ビルド済み `.app` と、Swift Package Manager の checkouts など�
 
 ### Feluda
 
-PHP / Composer 主体ではライセンス穴が出やすいため、**`presets/wordpress/defaults.json` は `pipeline.feluda: true`** とします (正本。`macos-app` / `dir` は `false`)。
+PHP / Composer 主体ではライセンス穴が出やすいため、**`presets/wordpress/defaults.json` は `pipeline.feluda: true`** とします。`macos-app` も配布品質のため `true`。`dir` は `false`。
 ホストの `ack.config.json` で上書き可能です。
 
 ### 出力

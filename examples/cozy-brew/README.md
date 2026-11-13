@@ -8,11 +8,17 @@
 4. Release ビルド後 `npm run ack:generate` (`--config ack.config.json`)
 5. 生成された `ACKNOWLEDGEMENTS.md` をアプリに同梱
 
-### SPDX 前処理と Feluda (任意)
+### スキャン除外、Notice denylist、Feluda
 
-パイプラインは Syft マージ後に **パス匿名化** と **パス型 package 行の除去** を行ってから onot に渡します ([pipeline.md](../../docs/pipeline.md))。
+`macos-app` デフォルト (本 `ack.config.json`) では次を含みます ([pipeline.md](../../docs/pipeline.md)、[presets.md](../../docs/presets.md))。
 
-ライセンス補完が必要なときは [install.md](../../docs/install.md) のとおり Feluda を PATH に入れ、`ack.config.feluda.example.json` を参考に `pipeline.feluda: true` を設定してください。`doctor` で Feluda 行が OK であることを確認してから `generate` します。
+* `scan.exclude`: `**/.github/**` 等 (Syft)
+* `pipeline.noticeDenylist`: CI Action 名など配布物に含めない SPDX 行
+* `pipeline.feluda: true`: マージ後 SBOM のライセンス補完
+
+Feluda は [install.md](../../docs/install.md) のとおり PATH に用意し、`doctor` で Feluda 行が OK であることを確認してから `generate` します。Feluda だけに頼らず、除外と denylist も併用します。
+
+`ack.config.feluda.example.json` は本例と同型の参考です。
 
 `package.json.scripts.example` の `scripts` をホスト `package.json` にマージしてください。
 

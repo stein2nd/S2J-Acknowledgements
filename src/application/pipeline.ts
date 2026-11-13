@@ -117,18 +117,30 @@ export function runPipeline(options: PipelineOptions): number {
   }
 
   mergeSpdxDocuments(partialSboms, plan.sbomPath);
-  const spdxPrep = prepareSpdxFile(plan.sbomPath, {
-    hostRoot: options.hostRoot,
-    targets: plan.targets,
-  });
+  const noticeDenylist = options.config.pipeline?.noticeDenylist ?? [];
+  const spdxPrep = prepareSpdxFile(
+    plan.sbomPath,
+    {
+      hostRoot: options.hostRoot,
+      targets: plan.targets,
+    },
+    { noticeDenylist },
+  );
   if (options.verbose) {
     console.error(
-      `verbose: SPDX prepared (${plan.sbomPath}, dropped ${spdxPrep.droppedPathPackages} path-like packages)`,
+      `verbose: SPDX prepared (${plan.sbomPath}, dropped ${spdxPrep.droppedPathPackages} path-like, ${spdxPrep.droppedNoticePackages} notice-denylist)`,
     );
-  } else if (spdxPrep.droppedPathPackages > 0) {
-    console.error(
-      `info: dropped ${spdxPrep.droppedPathPackages} path-like SPDX package(s) before onot`,
-    );
+  } else {
+    if (spdxPrep.droppedPathPackages > 0) {
+      console.error(
+        `info: dropped ${spdxPrep.droppedPathPackages} path-like SPDX package(s) before onot`,
+      );
+    }
+    if (spdxPrep.droppedNoticePackages > 0) {
+      console.error(
+        `info: dropped ${spdxPrep.droppedNoticePackages} notice-denylist SPDX package(s) before onot`,
+      );
+    }
   }
 
   const useFeluda = plan.feluda && !options.skipFeluda;

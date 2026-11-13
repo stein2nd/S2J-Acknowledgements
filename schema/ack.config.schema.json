@@ -50,6 +50,10 @@
           "type": "array",
           "items": { "type": "string", "minLength": 1 }
         },
+        "noticeDenylist": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
         "onotFormat": { "type": "string", "const": "md" },
         "onotConfig": { "type": "string" }
       }

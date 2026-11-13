@@ -12,9 +12,13 @@
   "tools": {
     "venvPath": "venv"
   },
+  "scan": {
+    "exclude": ["**/.github/**", "**/.git/**", "**/node_modules/**"]
+  },
   "pipeline": {
     "feluda": true,
     "feludaArgs": ["--sbom-input", "{sbom}", "--sbom-enriched", "{sbom}"],
+    "noticeDenylist": ["actions/*", "codecov/*", "maxim-lobanov/*"],
     "onotFormat": "md",
     "onotConfig": "onot.yaml"
   }

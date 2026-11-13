@@ -9,7 +9,7 @@ v1向けの実装 initiative タスクです。状態は [status.md](./status.md
 | ホスト venv / `init` 冪等 | 採用 | [decisions/001-venv-and-init.md](./decisions/001-venv-and-init.md) |
 | 仕様正本 | マトリックス + 機械可読 | [decisions/002-canonical-sources.md](./decisions/002-canonical-sources.md)、[specs.md](./specs.md) |
 | SPDX マージ / Syft exclude | 2+ 対象でマージ | [decisions/003-spdx-merge-and-syft.md](./decisions/003-spdx-merge-and-syft.md)、[pipeline.md](./pipeline.md) |
-| Feluda 既定 | `wordpress` のみ `true` | `presets/wordpress/defaults.json` |
+| Feluda 既定 | `macos-app` / `wordpress` `true`、`dir` `false` | `presets/*/defaults.json` |
 | `composer.lock` のみ | v1非対象 | ADR 003 |
 
 ## 非目的

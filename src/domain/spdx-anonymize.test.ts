@@ -6,6 +6,8 @@ import {
   anonymizeString,
   buildSpdxPathReplacements,
   isPathLikePackageName,
+  matchesNoticeDenylist,
+  pruneNoticeDenylistPackages,
   prunePathLikePackages,
 } from "./spdx-anonymize.js";
 
@@ -55,5 +57,23 @@ describe("spdx-anonymize", () => {
     };
     expect(prunePathLikePackages(doc)).toBe(2);
     expect((doc.packages as { name: string }[]).map((p) => p.name)).toEqual(["docs-linter"]);
+  });
+
+  it("matches notice denylist globs", () => {
+    const patterns = ["actions/*", "codecov/*", "maxim-lobanov/*"];
+    expect(matchesNoticeDenylist("actions/checkout", patterns)).toBe(true);
+    expect(matchesNoticeDenylist("codecov/codecov-action", patterns)).toBe(true);
+    expect(matchesNoticeDenylist("s2j-about-window", patterns)).toBe(false);
+  });
+
+  it("prunes notice-denylist packages from SPDX", () => {
+    const doc = {
+      packages: [
+        { name: "actions/checkout", versionInfo: "v5" },
+        { name: "s2j-source-list", versionInfo: "2.0.10" },
+      ],
+    };
+    expect(pruneNoticeDenylistPackages(doc, ["actions/*"])).toBe(1);
+    expect((doc.packages as { name: string }[]).map((p) => p.name)).toEqual(["s2j-source-list"]);
   });
 });

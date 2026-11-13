@@ -2,6 +2,18 @@
 
 ## unreleased
 
+## 0.1.9 - 2026-11-12
+
+### Added
+
+* `macos-app`: デフォルト `scan.exclude` (`.github` / `.git` / `node_modules`) と `pipeline.noticeDenylist` (CI Action 名など)
+* SPDX 前処理: `pipeline.noticeDenylist` で glob 一致 package を除去
+
+### Changed
+
+* `macos-app`: デフォルト `pipeline.feluda: true` (配布用 Notice)。`dir` は従来どおり `false`
+* docs / examples: Cozy Brew `ack.config.json` を上記デフォルトに同期
+
 ## 0.1.8 - 2026-11-12
 
 ### Fixed
