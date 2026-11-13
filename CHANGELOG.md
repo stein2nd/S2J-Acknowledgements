@@ -2,6 +2,17 @@
 
 ## unreleased
 
+## 0.1.13 - 2026-11-13
+
+### Added
+
+* examples: [examples/dir](../examples/dir/) (`dir` + `pipeline.noticeProductName`)、[examples/wordpress-plugin](../examples/wordpress-plugin/) に製品名例と README
+
+### Changed
+
+* docs: [implementation.md](./docs/implementation.md) / [status.md](./docs/status.md) を npm **0.1.13** に同期
+* docs: [test-results.md](./docs/test-results.md) — Cozy Brew 見出し **OSS Notice for CozyBrewApp** 確認行
+
 ## 0.1.12 - 2026-11-13
 
 ### Fixed

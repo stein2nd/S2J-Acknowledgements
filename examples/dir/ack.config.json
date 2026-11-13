@@ -1,0 +1,15 @@
+{
+  "preset": "dir",
+  "output": "ACKNOWLEDGEMENTS.md",
+  "workDir": "build/oss-notice",
+  "scanPaths": ["."],
+  "tools": {
+    "venvPath": "venv"
+  },
+  "pipeline": {
+    "noticeProductName": "My Project",
+    "feluda": false,
+    "onotFormat": "md",
+    "onotConfig": "onot.yaml"
+  }
+}

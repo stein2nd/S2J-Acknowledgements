@@ -4,7 +4,7 @@
 
 索引は [specs.md](./specs.md) です。タスク ID の正本は [implementation.md](./implementation.md) です。
 
-**npm:** `@s2j/acknowledgements` **0.1.12** (`latest`、tag `v0.1.12`。Git tag `v0.1.11.1` = dist-zip 用、npm は四桁版を避ける)
+**npm:** `@s2j/acknowledgements` **0.1.13** (`latest`、tag `v0.1.13`)
 
 **v1到達 (2026-11-13):** `dir` 手動 E2E、npm 公開・[S2J Cozy Brew](https://github.com/stein2nd/s2j-cozy-brew) で `init` / `doctor` / `generate` / Resources 同梱 / [S2J About Window](https://github.com/stein2nd/s2j-about-window) の License、Acknowledgements 表示まで確認 ([test-results.md](./test-results.md))。
 
@@ -132,16 +132,16 @@
 
 ### ホスト統合 {#status-host}
 
-* [x] P5-01: [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` (`scheme` / `productName`: **CozyBrewApp**、v0.1.9パイプラインデフォルトと同期)
+* [x] P5-01: [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` (`scheme` / `productName`: **CozyBrewApp**)。[examples/dir](../examples/dir/)、[examples/wordpress-plugin](../examples/wordpress-plugin/) に `noticeProductName` 例
 * [x] P5-02: `package.json.scripts.example` (`ack:*`)
 * [x] P5-03: [examples/wordpress-plugin](../examples/wordpress-plugin/) README 付き例
-* [x] P5-04: npm 公開 ([publish.md](./publish.md)、**latest v0.1.12**)
+* [x] P5-04: npm 公開 ([publish.md](./publish.md)、**latest v0.1.13**)
 
 ### ドキュメント・リリース {#status-docs-release}
 
 * [x] P6-01: `docs_mod/` 確定版を `docs/` に移行
 * [x] P6-02: README クイックスタート ([README.md](../README.md))
-* [x] P6-03: CHANGELOG / Git tag **v0.1.0… v0.1.11**
+* [x] P6-03: CHANGELOG / Git tag **v0.1.0… v0.1.13**
 
 ### 品質、CI {#status-quality}
 
@@ -150,7 +150,7 @@
 * [x] `npm run test:doctor`: ACK-001〜006
 * [x] `npm run build` / `prepare` → 配布可能 `dist/bin/cli.js`
 * [x] `npm run dist` + CI dist-zip (Lint → Test → Build & zip → artifact)
-* [x] [`.github/workflows/npm-publish.yml`](../.github/workflows/npm-publish.yml): tag `v*` で publish (0.1.4〜0.1.11)
+* [x] [`.github/workflows/npm-publish.yml`](../.github/workflows/npm-publish.yml): tag `v*` で publish (0.1.4〜0.1.13)
 * [x] Node v22 `engines` と workflow 整合 (`ubuntu-24.04`)
 
 ## v1ゲート外・任意 {#status-gates}
@@ -163,7 +163,7 @@
 | G2 | `docs-lint` CI | 姉妹 Docs Linter 同型 (任意) |
 | G3 | Windows ターゲット解決 | v1非目標 |
 | G4 | 実ホスト (Cozy Brew / WP) で `macos-app` / `wordpress` generate | **Cozy Brew 済** — generate + About で表・長文 License 表示まで ([test-results.md](./test-results.md) 2026-11-13に UI 行)。**WordPress 実ホストは未** |
-| G5 | npm 公開の実コマンド実行 | **済** — registry `latest` **0.1.12** |
+| G5 | npm 公開の実コマンド実行 | **済** — registry `latest` **0.1.13** |
 
 ## 補足
 
@@ -184,11 +184,10 @@
 9. **0.1.11** — 済 (`noticeProductName`、SPDX 見出し、generic WARN)
 10. **0.1.11.1** — 済 (dist-zip / Prettier、Git tag のみ)
 11. **0.1.12** — 済 (npm `latest` 是正、`0.1.1-1.1` 回避)
+12. **0.1.13** — 済 (examples / docs、Cozy Brew 見出し記録)
 
 ## 次のアクション (推奨)
 
 | 優先 | 内容 |
 | --- | --- |
-| 低 | WordPress 等で `pipeline.noticeProductName` の記載例を examples に追加 (任意) |
 | 低 | WordPress 実ホストで `wordpress` プリセット `generate` を [test-results.md](./test-results.md) に1行追記 |
-| 低 | [implementation.md](./implementation.md) の P5-04等を latest **0.1.11** に表記同期 |
