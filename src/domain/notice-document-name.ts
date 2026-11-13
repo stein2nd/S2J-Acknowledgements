@@ -2,9 +2,7 @@ import type { AckConfig } from "./ack-config.js";
 import { SPDX_GENERIC_DOCUMENT_NAME, spdxDocumentNameFromProductName } from "./spdx-anonymize.js";
 
 export type NoticeDocumentNameSource =
-  | "pipeline.noticeProductName"
-  | "xcode.productName"
-  | "generic";
+  "pipeline.noticeProductName" | "xcode.productName" | "generic";
 
 export type NoticeDocumentNameResolution = {
   documentName: string;
