@@ -4,7 +4,7 @@
 
 索引は [specs.md](./specs.md) です。タスク ID の正本は [implementation.md](./implementation.md) です。
 
-**npm:** `@s2j/acknowledgements` **0.1.10** (`latest`、tag `v0.1.10` + [npm-publish](../.github/workflows/npm-publish.yml) + dist-zip CI)。
+**npm:** `@s2j/acknowledgements` **0.1.11** (`latest`、tag `v0.1.11` + [npm-publish](../.github/workflows/npm-publish.yml) + dist-zip CI)。
 
 **v1到達 (2026-11-13):** `dir` 手動 E2E、npm 公開・[S2J Cozy Brew](https://github.com/stein2nd/s2j-cozy-brew) で `init` / `doctor` / `generate` / Resources 同梱 / [S2J About Window](https://github.com/stein2nd/s2j-about-window) の License、Acknowledgements 表示まで確認 ([test-results.md](./test-results.md))。
 
@@ -106,7 +106,7 @@
 
 #### Test
 
-* [x] Vitest: `parse-build-settings`、`derived-data`、`resolve-app` (明示 `.app`)、`project-yml` (**28** 件中 Xcode 関連含む)
+* [x] Vitest: `parse-build-settings`、`derived-data`、`resolve-app` (明示 `.app`)、`project-yml`、SPDX ドキュメント名 (**31** 件中 Xcode / SPDX 関連含む)
 * [x] 実ホスト (Cozy Brew): Release ビルド後 `generate` (v0.1.9配布向け Components) + About UI — [test-results.md](./test-results.md) 2026-11-13
 
 ### パイプライン {#status-pipeline}
@@ -121,7 +121,7 @@
 * [x] P4-05: `workDir` ポリシー (`output` 外はディレクトリ削除、内側は中間のみ)
 * [x] P4-06: `--dry-run`、`--verbose`、`--keep-intermediate`、`--skip-feluda`
 * [x] スキャン対象解決 (`dir` / `wordpress` / `macos-app` + [§Xcode 解決](#status-xcode))
-* [x] SPDX 前処理 (`prepareSpdxFile`: パス匿名化、パス型 package 除去、`pipeline.noticeDenylist`)
+* [x] SPDX 前処理 (`prepareSpdxFile`: パス匿名化、`pipeline.noticeProductName` / `xcode.productName` → onot 見出し、generic WARN)
 * [x] `generate` デフォルト設定 `{cwd}/ack.config.json` (`doctor` と同型、ACK-002)
 * [x] `macos-app` デフォルト: `scan.exclude` (`.github` 等)、`pipeline.feluda: true`、`noticeDenylist` (CI Action)
 
@@ -135,22 +135,22 @@
 * [x] P5-01: [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` (`scheme` / `productName`: **CozyBrewApp**、v0.1.9パイプラインデフォルトと同期)
 * [x] P5-02: `package.json.scripts.example` (`ack:*`)
 * [x] P5-03: [examples/wordpress-plugin](../examples/wordpress-plugin/) README 付き例
-* [x] P5-04: npm 公開 ([publish.md](./publish.md)、**latest v0.1.10**、tag `v0.1.10` まで運用)
+* [x] P5-04: npm 公開 ([publish.md](./publish.md)、**latest v0.1.11**、tag `v0.1.11` まで運用)
 
 ### ドキュメント・リリース {#status-docs-release}
 
 * [x] P6-01: `docs_mod/` 確定版を `docs/` に移行
 * [x] P6-02: README クイックスタート ([README.md](../README.md))
-* [x] P6-03: CHANGELOG / Git tag **v0.1.0… v0.1.10**
+* [x] P6-03: CHANGELOG / Git tag **v0.1.0… v0.1.11**
 
 ### 品質、CI {#status-quality}
 
 * [x] `npm run lint`: ESLint + `tsc --noEmit`
-* [x] `npm run test`: Vitest (**28** 件、パイプライン、SPDX 前処理、Xcode 純関数等)
+* [x] `npm run test`: Vitest (**35** 件、パイプライン、SPDX / Notice 名、Xcode 純関数等)
 * [x] `npm run test:doctor`: ACK-001〜006
 * [x] `npm run build` / `prepare` → 配布可能 `dist/bin/cli.js`
 * [x] `npm run dist` + CI dist-zip (Lint → Test → Build & zip → artifact)
-* [x] [`.github/workflows/npm-publish.yml`](../.github/workflows/npm-publish.yml): tag `v*` で publish (0.1.4〜0.1.10)
+* [x] [`.github/workflows/npm-publish.yml`](../.github/workflows/npm-publish.yml): tag `v*` で publish (0.1.4〜0.1.11)
 * [x] Node v22 `engines` と workflow 整合 (`ubuntu-24.04`)
 
 ## v1ゲート外・任意 {#status-gates}
@@ -163,7 +163,7 @@
 | G2 | `docs-lint` CI | 姉妹 Docs Linter 同型 (任意) |
 | G3 | Windows ターゲット解決 | v1非目標 |
 | G4 | 実ホスト (Cozy Brew / WP) で `macos-app` / `wordpress` generate | **Cozy Brew 済** — generate + About で表・長文 License 表示まで ([test-results.md](./test-results.md) 2026-11-13に UI 行)。**WordPress 実ホストは未** |
-| G5 | npm 公開の実コマンド実行 | **済** — registry `latest` **0.1.10** |
+| G5 | npm 公開の実コマンド実行 | **済** — registry `latest` **0.1.11** |
 
 ## 補足
 
@@ -181,11 +181,12 @@
 6. **Cozy Brew 配布向け Notice + About UI** — 済 (generate → Resources 同梱、About Window で License / Acknowledgements 表示確認。[test-results.md](./test-results.md) 2026-11-13に UI 行)
 7. **status / test-results の整備** — 済 (2026-11-13)
 8. **0.1.10** — 済 (Xcode `productName`、onot `company:` 例、Cozy Brew 検証記録)
+9. **0.1.11** — 済 (`noticeProductName`、SPDX 見出し、generic WARN)
 
 ## 次のアクション (推奨)
 
 | 優先 | 内容 |
 | --- | --- |
-| 中 | Notice 見出し **`OSS Notice for host-sbom`** を製品名に差し替え (onot / SPDX ドキュメント名、またはパイプライン拡張) |
+| 低 | WordPress 等で `pipeline.noticeProductName` の記載例を examples に追加 (任意) |
 | 低 | WordPress 実ホストで `wordpress` プリセット `generate` を [test-results.md](./test-results.md) に1行追記 |
-| 低 | [implementation.md](./implementation.md) の P5-04等を latest **0.1.10** に表記同期 |
+| 低 | [implementation.md](./implementation.md) の P5-04等を latest **0.1.11** に表記同期 |

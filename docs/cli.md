@@ -134,6 +134,7 @@ CI や手元で **何度でも安全に再実行** できることを v1の前�
 | --- | --- |
 | `feluda` | `pipeline.feluda: true` のときのみ必須。`false` なら未インストール可 |
 | `onot.yaml` | `pipeline.onotConfig` が指すファイルの存在 (なければ WARN。生成は v1でも試行する — [pipeline.md](./pipeline.md)) |
+| OSS Notice title | `pipeline.noticeProductName` または `xcode.productName` から解決。未設定で `host-sbom` のとき WARN ([config-schema.md](./config-schema.md)) |
 
 ### 出力
 

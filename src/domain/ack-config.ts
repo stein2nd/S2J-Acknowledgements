@@ -8,6 +8,8 @@ export type PipelineConfig = {
   feluda?: boolean;
   /** Extra feluda argv; `{sbom}` is replaced with the merged SBOM path. */
   feludaArgs?: string[];
+  /** SPDX document / onot Notice title (overrides xcode.productName when set). */
+  noticeProductName?: string;
   /** SPDX `packages[].name` globs omitted from user-facing notices (not shipped OSS). */
   noticeDenylist?: string[];
   onotFormat?: string;

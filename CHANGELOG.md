@@ -2,6 +2,17 @@
 
 ## unreleased
 
+## 0.1.11 - 2026-11-13
+
+### Added
+
+* `pipeline.noticeProductName` — 全プリセット共通の Notice 製品名 (`xcode.productName` より優先)
+* `doctor` / `generate`: 製品名の未設定で SPDX 名が `host-sbom` のとき WARN
+
+### Changed
+
+* SPDX 前処理のドキュメント名: `pipeline.noticeProductName` → `xcode.productName` (`.app` 除去) → `host-sbom`
+
 ## 0.1.10 - 2026-11-13
 
 ### Fixed

@@ -12,6 +12,12 @@ import { isPresetName } from "../domain/presets.js";
 import { flagString, parseArgs } from "../lib/args.js";
 import { resolveOnotExecutable, resolveHostRoot } from "../lib/onot-path.js";
 import { loadRecommendedTools } from "../lib/recommended-tools.js";
+import type { AckConfig } from "../domain/ack-config.js";
+import {
+  NOTICE_GENERIC_NAME_HINT,
+  resolveNoticeDocumentName,
+} from "../domain/notice-document-name.js";
+import { SPDX_GENERIC_DOCUMENT_NAME } from "../domain/spdx-anonymize.js";
 import { resolvePackageRoot } from "../lib/package-root.js";
 
 type Row = { name: string; status: "OK" | "WARN" | "MISSING"; detail?: string };
@@ -42,6 +48,7 @@ export function runDoctor(argv: string[]): number {
 
   let venvPath = "venv";
   let feludaRequired = false;
+  let ackConfig: AckConfig | undefined;
 
   if (configPath && existsSync(configPath)) {
     const host = JSON.parse(readFileSync(configPath, "utf8")) as Record<string, unknown>;
@@ -51,11 +58,11 @@ export function runDoctor(argv: string[]): number {
       const defaults = JSON.parse(
         readFileSync(join(packageRoot, "presets", preset, "defaults.json"), "utf8"),
       ) as Record<string, unknown>;
-      const merged = mergeHostConfig(defaults, host);
-      const pipeline = merged.pipeline as { feluda?: boolean } | undefined;
+      const merged = mergeHostConfig(defaults, host) as AckConfig;
+      ackConfig = merged;
+      const pipeline = merged.pipeline;
       feludaRequired = pipeline?.feluda === true;
-      const tools = merged.tools as { venvPath?: string } | undefined;
-      venvPath = tools?.venvPath ?? "venv";
+      venvPath = merged.tools?.venvPath ?? "venv";
     }
   } else if (configPath) {
     rows.push({ name: "ack.config.json", status: "WARN", detail: `not found: ${configPath}` });
@@ -105,6 +112,23 @@ export function runDoctor(argv: string[]): number {
     if (!feluda) hasMissing = true;
   } else {
     rows.push({ name: "feluda", status: "OK", detail: "not required" });
+  }
+
+  if (ackConfig) {
+    const notice = resolveNoticeDocumentName(ackConfig);
+    if (notice.isGeneric) {
+      rows.push({
+        name: "OSS Notice title",
+        status: "WARN",
+        detail: `generic ${SPDX_GENERIC_DOCUMENT_NAME}; ${NOTICE_GENERIC_NAME_HINT}`,
+      });
+    } else {
+      rows.push({
+        name: "OSS Notice title",
+        status: "OK",
+        detail: notice.documentName,
+      });
+    }
   }
 
   const recommended = loadRecommendedTools();

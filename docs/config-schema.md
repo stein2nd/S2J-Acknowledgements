@@ -45,11 +45,12 @@ v1では JSON Schema ファイル (`schema/ack.config.schema.json`) の同梱を
 | `xcode.scheme` | string | 推奨 | `xcodebuild -scheme` |
 | `xcode.configuration` | string | いいえ | デフォルト `Release` |
 | `xcode.appPath` | string | いいえ | `.app` 明示 (CI)。設定時は自動探索より優先 |
-| `xcode.productName` | string | いいえ | DerivedData 探索時の絞り込み (`CozyBrewApp.app`) |
+| `xcode.productName` | string | いいえ | DerivedData / `xcodebuild` 解決の `.app` 名 (`CozyBrewApp.app`)。`pipeline.noticeProductName` 未設定時、SPDX ドキュメント名 (onot 見出し) は `.app` を除いた値 |
 | `xcode.merge` | string[] | いいえ | デフォルト `["app", "spm-checkouts"]` (`macos-app`) |
 | `pipeline` | object | いいえ | パイプライン制御 |
 | `pipeline.feluda` | boolean | いいえ | プリセットデフォルト: `macos-app` / `wordpress` `true`、`dir` `false` |
 | `pipeline.feludaArgs` | string[] | いいえ | Feluda 引数。`{sbom}` はマージ後 SBOM パス。未指定時は `--sbom-input` / `--sbom-enriched` |
+| `pipeline.noticeProductName` | string | いいえ | 全プリセット共通の製品名 (SPDX `name` / onot 見出し `OSS Notice for …`)。**最優先**。未設定かつ macOS 以外は `host-sbom` になり `doctor` / `generate` が WARN |
 | `pipeline.noticeDenylist` | string[] | いいえ | Notice から省く SPDX `packages[].name` glob (`actions/*` 等)。[pipeline.md](./pipeline.md) |
 | `pipeline.onotFormat` | string | いいえ | v1は `md` のみ |
 | `pipeline.onotConfig` | string | いいえ | onot 設定 YAML へのパス |

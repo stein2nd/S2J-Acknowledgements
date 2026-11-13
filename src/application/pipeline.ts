@@ -3,6 +3,10 @@ import { dirname, join, resolve } from "node:path";
 
 import { copyArtifactFile } from "../adapters/copy-artifact.js";
 import type { AckConfig } from "../domain/ack-config.js";
+import {
+  resolveNoticeDocumentName,
+  warnIfGenericNoticeDocumentName,
+} from "../domain/notice-document-name.js";
 import { prepareSpdxFile } from "../domain/spdx-anonymize.js";
 import { intermediatePathsToRemove, isOutputInsideWorkDir } from "../domain/workdir-cleanup.js";
 import { runFeludaPass } from "./feluda.js";
@@ -71,6 +75,9 @@ export function runPipeline(options: PipelineOptions): number {
     return 2;
   }
 
+  const noticeName = resolveNoticeDocumentName(options.config);
+  warnIfGenericNoticeDocumentName(noticeName);
+
   if (options.dryRun) {
     console.log("dry-run: host root", options.hostRoot);
     console.log("dry-run: workDir", plan.workDir);
@@ -83,6 +90,7 @@ export function runPipeline(options: PipelineOptions): number {
       console.log(`  ${c}`);
     }
     console.log("dry-run: merged SBOM →", plan.sbomPath);
+    console.log("dry-run: SPDX document name →", noticeName.documentName);
     console.log("dry-run: feluda", options.skipFeluda ? "skipped (--skip-feluda)" : plan.feluda);
     console.log("dry-run: onot →", plan.onotCommand);
     console.log("dry-run: copy onot output dir →", plan.outputPath);
@@ -118,13 +126,14 @@ export function runPipeline(options: PipelineOptions): number {
 
   mergeSpdxDocuments(partialSboms, plan.sbomPath);
   const noticeDenylist = options.config.pipeline?.noticeDenylist ?? [];
+  const documentName = noticeName.isGeneric ? undefined : noticeName.documentName;
   const spdxPrep = prepareSpdxFile(
     plan.sbomPath,
     {
       hostRoot: options.hostRoot,
       targets: plan.targets,
     },
-    { noticeDenylist },
+    { noticeDenylist, documentName },
   );
   if (options.verbose) {
     console.error(

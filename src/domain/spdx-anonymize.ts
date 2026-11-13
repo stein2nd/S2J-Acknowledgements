@@ -128,9 +128,19 @@ export type PrepareSpdxResult = {
   droppedNoticePackages: number;
 };
 
+/** Internal SPDX document name when no product name is configured (onot: OSS Notice for host-sbom). */
+export const SPDX_GENERIC_DOCUMENT_NAME = "host-sbom";
+
 export type PrepareSpdxOptions = {
   noticeDenylist?: string[];
+  /** SPDX `name` after merge; onot uses this for the Notice title (e.g. OSS Notice for …). */
+  documentName?: string;
 };
+
+/** `xcode.productName` → SPDX document name (strip `.app` if present). */
+export function spdxDocumentNameFromProductName(productName: string): string {
+  return productName.endsWith(".app") ? productName.slice(0, -4) : productName;
+}
 
 /**
  * Anonymize paths, drop path-shaped package rows, then write SPDX for Feluda / onot.
@@ -145,7 +155,8 @@ export function prepareSpdxFile(
   const anon = anonymizeSpdxValue(doc, replacements) as Record<string, unknown>;
 
   if (anon.name === "merged-sbom") {
-    anon.name = "host-sbom";
+    const want = options.documentName?.trim();
+    anon.name = want ? want : SPDX_GENERIC_DOCUMENT_NAME;
   }
 
   const droppedPathPackages = prunePathLikePackages(anon);

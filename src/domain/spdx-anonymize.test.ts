@@ -1,3 +1,5 @@
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -7,8 +9,11 @@ import {
   buildSpdxPathReplacements,
   isPathLikePackageName,
   matchesNoticeDenylist,
+  prepareSpdxFile,
   pruneNoticeDenylistPackages,
   prunePathLikePackages,
+  SPDX_GENERIC_DOCUMENT_NAME,
+  spdxDocumentNameFromProductName,
 } from "./spdx-anonymize.js";
 
 describe("spdx-anonymize", () => {
@@ -64,6 +69,29 @@ describe("spdx-anonymize", () => {
     expect(matchesNoticeDenylist("actions/checkout", patterns)).toBe(true);
     expect(matchesNoticeDenylist("codecov/codecov-action", patterns)).toBe(true);
     expect(matchesNoticeDenylist("s2j-about-window", patterns)).toBe(false);
+  });
+
+  it("strips .app from productName for SPDX document name", () => {
+    expect(spdxDocumentNameFromProductName("CozyBrewApp.app")).toBe("CozyBrewApp");
+    expect(spdxDocumentNameFromProductName("CozyBrewApp")).toBe("CozyBrewApp");
+  });
+
+  it("prepareSpdxFile renames merged-sbom using documentName", () => {
+    const hostRoot = mkdtempSync(join(tmpdir(), "spdx-doc-"));
+    const path = join(hostRoot, "sbom.spdx.json");
+    writeFileSync(path, `${JSON.stringify({ name: "merged-sbom", packages: [] })}\n`);
+    prepareSpdxFile(path, { hostRoot, targets: [] }, { documentName: "CozyBrewApp" });
+    const doc = JSON.parse(readFileSync(path, "utf8")) as { name: string };
+    expect(doc.name).toBe("CozyBrewApp");
+  });
+
+  it("prepareSpdxFile keeps host-sbom without documentName", () => {
+    const hostRoot = mkdtempSync(join(tmpdir(), "spdx-doc-"));
+    const path = join(hostRoot, "sbom.spdx.json");
+    writeFileSync(path, `${JSON.stringify({ name: "merged-sbom", packages: [] })}\n`);
+    prepareSpdxFile(path, { hostRoot, targets: [] });
+    const doc = JSON.parse(readFileSync(path, "utf8")) as { name: string };
+    expect(doc.name).toBe(SPDX_GENERIC_DOCUMENT_NAME);
   });
 
   it("prunes notice-denylist packages from SPDX", () => {

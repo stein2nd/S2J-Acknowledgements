@@ -58,7 +58,8 @@ syft scan dir:{path} -o spdx-json={out} --exclude {pattern} ...
 2. パッケージ一覧を結合 (重複は `name@version` で一意化)
 3. マージ結果を `{workDir}/sbom.spdx.json` として保存
 4. **SPDX 前処理** (Feluda / onot の前、`prepareSpdxFile`):
-   * **匿名化**: スキャン絶対パス → `{SCAN:<label>}`、ホストルート → `{HOST_ROOT}`、`$HOME` → `{HOME}`。ドキュメント名 `merged-sbom` → `host-sbom`
+   * **匿名化**: スキャン絶対パス → `{SCAN:<label>}`、ホストルート → `{HOST_ROOT}`、`$HOME` → `{HOME}`
+   * **ドキュメント名** (`merged-sbom` 置換、onot 見出し `OSS Notice for …`): (1) `pipeline.noticeProductName`、(2) `xcode.productName` (`.app` 除去)、(3) 未設定時 `host-sbom` — `doctor` / `generate` で WARN (配布向けには (1) または (2) を推奨)
    * **除去**: `packages[].name` がパス型 (先頭 `/`、`{SCAN:…}` / `{HOME}` 等) の行を削除。コンポーネント名 (`s2j-about-window` 等) は残す
    * **Notice denylist**: `pipeline.noticeDenylist[]` の glob に一致する `name` を削除 (CI Action 等、配布物に含めないコンポーネント)。`macos-app` デフォルト: `actions/*` / `codecov/*` / `maxim-lobanov/*`
 
