@@ -4,7 +4,7 @@
 
 索引は [specs.md](./specs.md) です。タスク ID の正本は [implementation.md](./implementation.md) です。
 
-**npm:** `@s2j/acknowledgements` **0.1.11.1** (`latest`、tag `v0.1.11.1` + [npm-publish](../.github/workflows/npm-publish.yml) + dist-zip CI)。
+**npm:** `@s2j/acknowledgements` **0.1.12** (`latest`、tag `v0.1.12`。Git tag `v0.1.11.1` = dist-zip 用、npm は四桁版を避ける)
 
 **v1到達 (2026-11-13):** `dir` 手動 E2E、npm 公開・[S2J Cozy Brew](https://github.com/stein2nd/s2j-cozy-brew) で `init` / `doctor` / `generate` / Resources 同梱 / [S2J About Window](https://github.com/stein2nd/s2j-about-window) の License、Acknowledgements 表示まで確認 ([test-results.md](./test-results.md))。
 
@@ -135,7 +135,7 @@
 * [x] P5-01: [examples/cozy-brew](../examples/cozy-brew/) `ack.config.json` (`scheme` / `productName`: **CozyBrewApp**、v0.1.9パイプラインデフォルトと同期)
 * [x] P5-02: `package.json.scripts.example` (`ack:*`)
 * [x] P5-03: [examples/wordpress-plugin](../examples/wordpress-plugin/) README 付き例
-* [x] P5-04: npm 公開 ([publish.md](./publish.md)、**latest v0.1.11.1**、tag `v0.1.11.1` まで運用)
+* [x] P5-04: npm 公開 ([publish.md](./publish.md)、**latest v0.1.12**)
 
 ### ドキュメント・リリース {#status-docs-release}
 
@@ -163,7 +163,7 @@
 | G2 | `docs-lint` CI | 姉妹 Docs Linter 同型 (任意) |
 | G3 | Windows ターゲット解決 | v1非目標 |
 | G4 | 実ホスト (Cozy Brew / WP) で `macos-app` / `wordpress` generate | **Cozy Brew 済** — generate + About で表・長文 License 表示まで ([test-results.md](./test-results.md) 2026-11-13に UI 行)。**WordPress 実ホストは未** |
-| G5 | npm 公開の実コマンド実行 | **済** — registry `latest` **0.1.11.1** |
+| G5 | npm 公開の実コマンド実行 | **済** — registry `latest` **0.1.12** |
 
 ## 補足
 
@@ -182,7 +182,8 @@
 7. **status / test-results の整備** — 済 (2026-11-13)
 8. **0.1.10** — 済 (Xcode `productName`、onot `company:` 例、Cozy Brew 検証記録)
 9. **0.1.11** — 済 (`noticeProductName`、SPDX 見出し、generic WARN)
-10. **0.1.11.1** — 済 (dist-zip / Prettier)
+10. **0.1.11.1** — 済 (dist-zip / Prettier、Git tag のみ)
+11. **0.1.12** — 済 (npm `latest` 是正、`0.1.1-1.1` 回避)
 
 ## 次のアクション (推奨)
 
